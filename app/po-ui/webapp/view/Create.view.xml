@@ -1,0 +1,114 @@
+<mvc:View
+    controllerName="po.ui.controller.Create"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m">
+
+    <Page id="createPage" title="{i18n>createPOTitle}" showNavButton="true" navButtonPress="onNavBack">
+        <content>
+            <VBox class="sapUiMediumMargin">
+                <Panel headerText="{i18n>newPurchaseOrder}" class="sapUiResponsiveMargin">
+                    <content>
+                        <!-- Simple Form for PO Creation -->
+                        <VBox id="simpleFormContainer" class="sapUiMediumMargin">
+
+                            <!-- Form Content -->
+                                    <core:Title text="{i18n>basicInformation}"/>
+                                    <Label text="{i18n>material}" required="true"/>
+                                    <Input
+                                        id="materialInput"
+                                        value="{/Material}"
+                                        placeholder="{i18n>enterMaterial}"
+                                        required="true"/>
+
+                                    <Label text="{i18n>supplier}" required="true"/>
+                                    <Input
+                                        id="supplierInput"
+                                        value="{/Supplier}"
+                                        placeholder="{i18n>enterSupplier}"
+                                        required="true"/>
+
+                                    <core:Title text="{i18n>quantityAndPricing}"/>
+                                    <Label text="{i18n>quantity}" required="true"/>
+                                    <Input
+                                        id="quantityInput"
+                                        value="{/Quantity}"
+                                        type="Number"
+                                        placeholder="{i18n>enterQuantity}"
+                                        required="true"/>
+
+                                    <Label text="{i18n>unit}"/>
+                                    <ComboBox
+                                        id="unitComboBox"
+                                        selectedKey="{/Unit}"
+                                        items="{dropdown>/Units}">
+                                        <core:Item key="{dropdown>key}" text="{dropdown>text}"/>
+                                    </ComboBox>
+
+                                    <Label text="{i18n>unitPrice}" required="true"/>
+                                    <Input
+                                        id="unitPriceInput"
+                                        value="{/UnitPrice}"
+                                        type="Number"
+                                        placeholder="{i18n>enterUnitPrice}"
+                                        required="true"/>
+
+                                    <Label text="{i18n>currency}"/>
+                                    <ComboBox
+                                        id="currencyComboBox"
+                                        selectedKey="{/Currency}"
+                                        items="{dropdown>/Currencies}">
+                                        <core:Item key="{dropdown>key}" text="{dropdown>text}"/>
+                                    </ComboBox>
+
+                                    <core:Title text="{i18n>additionalInformation}"/>
+                                    <Label text="{i18n>deliveryDate}"/>
+                                    <DatePicker
+                                        id="deliveryDatePicker"
+                                        value="{/DeliveryDate}"
+                                        placeholder="{i18n>selectDeliveryDate}"/>
+
+                                    <Label text="{i18n>notes}"/>
+                                    <TextArea
+                                        id="notesTextArea"
+                                        value="{/Notes}"
+                                        placeholder="{i18n>enterNotes}"
+                                        rows="3"/>
+                        </VBox>
+                        
+                        <!-- Total Amount Display -->
+                        <Panel headerText="{i18n>summary}" class="sapUiMediumMarginTop">
+                            <content>
+                                <HBox alignItems="Center" justifyContent="SpaceBetween" class="sapUiMediumMargin">
+                                    <Label text="{i18n>totalAmount}" design="Bold"/>
+                                    <ObjectNumber 
+                                        id="totalAmountDisplay"
+                                        number="{
+                                            parts: ['/Quantity', '/UnitPrice'],
+                                            formatter: '.calculateTotal'
+                                        }"
+                                        unit="{/Currency}"
+                                        emphasized="true"
+                                        state="Success"/>
+                                </HBox>
+                            </content>
+                        </Panel>
+                    </content>
+                    
+                    <footer>
+                        <OverflowToolbar>
+                            <ToolbarSpacer/>
+                            <Button 
+                                text="{i18n>cancel}" 
+                                press="onCancel"/>
+                            <Button 
+                                text="{i18n>save}" 
+                                type="Emphasized"
+                                press="onSave"/>
+                        </OverflowToolbar>
+                    </footer>
+                </Panel>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

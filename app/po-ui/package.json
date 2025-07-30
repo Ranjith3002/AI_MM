@@ -1,0 +1,23 @@
+{
+  "name": "po-ui",
+  "version": "1.0.0",
+  "description": "Purchase Order Management - SAP Fiori Freestyle App",
+  "main": "webapp/index.html",
+  "scripts": {
+    "start": "ui5 serve --port 8080",
+    "build": "ui5 build --dest dist",
+    "lint": "eslint webapp/",
+    "test": "npm run lint"
+  },
+  "devDependencies": {
+    "@ui5/cli": "^3.0.0",
+    "@sap/ux-ui5-tooling": "^1.0.0"
+  },
+  "ui5": {
+    "dependencies": [
+      "@ui5/cli",
+      "@sap/ux-ui5-tooling"
+    ]
+  },
+  "sapux": true
+}

@@ -1,0 +1,7 @@
+ID;orderNumber;material;supplier;quantity;unit;unitPrice;totalAmount;currency_code;status;deliveryDate;notes;requestedBy
+1;PO-2024-001;Steel Rods 10mm;MetalCorp Industries;500;PC;12.50;6250.00;USD;Approved;2024-08-15;Urgent delivery required for construction project;John Doe
+2;PO-2024-002;Aluminum Sheets 2mm;AlumTech Solutions;200;M;25.75;5150.00;USD;Draft;2024-08-20;Quality certification required;Jane Smith
+3;PO-2024-003;Copper Wire 2.5mm;ElectroSupply Co.;1000;M;3.20;3200.00;USD;Submitted;2024-08-10;Electrical grade copper required;Mike Johnson
+4;PO-2024-004;Concrete Mix;BuildMaster Supplies;50;KG;8.90;445.00;USD;Delivered;2024-07-30;High-strength concrete for foundation;Sarah Wilson
+5;PO-2024-005;Safety Helmets;SafetyFirst Equipment;25;PC;15.00;375.00;USD;Approved;2024-08-05;ANSI certified helmets required;David Brown
+6;PO-2024-006;Industrial Lubricant;LubeTech Industries;100;L;22.50;2250.00;USD;Rejected;2024-08-12;Price too high seeking alternative supplier;Lisa Davis

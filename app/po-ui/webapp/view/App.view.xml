@@ -1,0 +1,11 @@
+<mvc:View
+    controllerName="po.ui.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m">
+    <Shell id="shell">
+        <App id="app" class="myAppDemoWT">
+            <!-- Content will be loaded by router -->
+        </App>
+    </Shell>
+</mvc:View>

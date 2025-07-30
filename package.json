@@ -21,7 +21,9 @@
   },
   "cds": {
     "requires": {
-      "auth": "xsuaa"
+      "auth": {
+        "kind": "mocked"
+      }
     },
     "sql": {
       "native_hana_associations": false

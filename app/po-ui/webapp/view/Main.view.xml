@@ -1,0 +1,115 @@
+<mvc:View
+    controllerName="po.ui.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m">
+
+    <Page id="page" title="Purchase Orders" showNavButton="false">
+        <content>
+            <VBox class="sapUiMediumMargin">
+                <!-- Header with Create Button -->
+                <Panel headerText="Purchase Orders" class="sapUiResponsiveMargin">
+                    <headerToolbar>
+                        <Toolbar>
+                            <Title text="Purchase Orders" level="H2"/>
+                            <ToolbarSpacer/>
+                            <Button
+                                id="createButton"
+                                text="Create Purchase Order"
+                                type="Emphasized"
+                                icon="sap-icon://add"
+                                press="onCreatePO"/>
+                        </Toolbar>
+                    </headerToolbar>
+
+                    <content>
+                        <!-- Search Bar -->
+                        <SearchField
+                            id="searchField"
+                            placeholder="Search Purchase Orders..."
+                            search="onSearch"
+                            width="20rem"
+                            class="sapUiMediumMarginBottom"/>
+
+                        <!-- Regular Table -->
+                            
+                        <Table
+                            id="table"
+                            mode="SingleSelect"
+                            items="{/PurchaseOrders}"
+                            growing="true"
+                            growingThreshold="20"
+                            class="sapUiResponsiveContentPadding">
+
+                            <headerToolbar>
+                                <OverflowToolbar design="Transparent">
+                                    <Title id="tableHeader" text="Purchase Orders List"/>
+                                    <ToolbarSpacer/>
+                                    <Button
+                                        text="Refresh"
+                                        icon="sap-icon://refresh"
+                                        press="onRefresh"/>
+                                </OverflowToolbar>
+                            </headerToolbar>
+
+                            <columns>
+                                <Column width="12em">
+                                    <Text text="PO ID"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true">
+                                    <Text text="Material"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="End">
+                                    <Text text="Quantity"/>
+                                </Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true">
+                                    <Text text="Supplier"/>
+                                </Column>
+                                <Column minScreenWidth="Desktop" demandPopin="true" hAlign="End">
+                                    <Text text="Total Amount"/>
+                                </Column>
+                                <Column minScreenWidth="Desktop" demandPopin="true">
+                                    <Text text="Status"/>
+                                </Column>
+                                <Column width="8em">
+                                    <Text text="Actions"/>
+                                </Column>
+                            </columns>
+
+                            <items>
+                                <ColumnListItem press="onItemPress">
+                                    <cells>
+                                        <ObjectIdentifier
+                                            title="{orderNumber}"
+                                            text="{createdAt}"/>
+                                        <Text text="{material}"/>
+                                        <ObjectNumber
+                                            number="{quantity}"
+                                            unit="{unit}"
+                                            emphasized="false"/>
+                                        <Text text="{supplier}"/>
+                                        <ObjectNumber
+                                            number="{totalAmount}"
+                                            unit="{currency_code}"
+                                            emphasized="true"/>
+                                        <ObjectStatus
+                                            text="{status}"
+                                            state="{
+                                                path: 'status',
+                                                formatter: '.formatStatus'
+                                            }"/>
+                                        <Button
+                                            icon="sap-icon://detail-view"
+                                            type="Transparent"
+                                            press="onViewDetails"
+                                            tooltip="View Details"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </content>
+                </Panel>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

@@ -1,0 +1,53 @@
+/* Purchase Order Details Dialog Styles */
+
+.sapMDialog .sapMDialogTitle {
+    font-weight: bold;
+    color: #0070f2;
+}
+
+.sapMDialog .sapUiFormResGrid .sapMLabel {
+    font-weight: 600;
+    color: #32363a;
+}
+
+.sapMDialog .sapMObjectNumber {
+    font-weight: 500;
+}
+
+.sapMDialog .sapMObjectNumberLarge {
+    font-size: 1.125rem;
+}
+
+.sapMDialog .sapMObjectStatus {
+    font-weight: 500;
+}
+
+/* Form spacing */
+.sapMDialog .sapUiFormResGrid .sapUiRespGridSpanL4:nth-child(odd) {
+    padding-top: 0.5rem;
+}
+
+.sapMDialog .sapUiFormResGrid .sapUiRespGridSpanL4:nth-child(even) {
+    padding-bottom: 0.5rem;
+}
+
+/* Dialog content padding */
+.sapMDialog .sapMDialogSection {
+    padding: 1rem;
+}
+
+/* Button styling */
+.sapMDialog .sapMBtn {
+    margin: 0.25rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .sapMDialog {
+        margin: 1rem;
+    }
+    
+    .sapMDialog .sapUiFormResGrid {
+        padding: 0.5rem;
+    }
+}

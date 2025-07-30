@@ -1,0 +1,198 @@
+/* Custom CSS for Purchase Order UI */
+
+/* Application-wide styles */
+.myAppDemoWT {
+    background-color: var(--sapBackgroundColor);
+}
+
+/* Panel styling */
+.sapMPanel {
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sapMPanelHdr {
+    background: linear-gradient(135deg, var(--sapPageHeader_Background) 0%, var(--sapObjectHeader_Background) 100%);
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+/* Table enhancements */
+.sapMListTblRow:hover {
+    background-color: var(--sapList_Hover_Background);
+}
+
+.sapMListTblCell {
+    vertical-align: middle;
+}
+
+/* Button enhancements */
+.sapMBtn.sapMBtnEmphasized {
+    background: linear-gradient(135deg, var(--sapButton_Emphasized_Background) 0%, var(--sapAccentColor6) 100%);
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.sapMBtn.sapMBtnEmphasized:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Form styling */
+.sapUiForm .sapMLabel {
+    font-weight: 600;
+}
+
+.sapUiFormResGridCont .sapMInputBase {
+    width: 100%;
+}
+
+/* Smart controls styling */
+.sapUiCompSmartTable {
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.sapUiCompSmartForm {
+    background-color: var(--sapTile_Background);
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+/* Status indicators */
+.sapMObjectStatus.sapMObjectStatusError {
+    color: var(--sapErrorColor);
+}
+
+.sapMObjectStatus.sapMObjectStatusWarning {
+    color: var(--sapWarningColor);
+}
+
+.sapMObjectStatus.sapMObjectStatusSuccess {
+    color: var(--sapSuccessColor);
+}
+
+.sapMObjectStatus.sapMObjectStatusInformation {
+    color: var(--sapInformationColor);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .sapMListTblCell {
+        padding: 0.5rem 0.25rem;
+        font-size: 0.875rem;
+    }
+    
+    .sapMPanel {
+        margin: 0.25rem 0;
+    }
+    
+    .sapUiCompSmartForm {
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .sapMTable .sapMListTblHeader {
+        display: none;
+    }
+    
+    .sapMListTblRow {
+        border-bottom: 1px solid var(--sapList_BorderColor);
+        padding: 0.5rem;
+    }
+    
+    .sapUiForm .sapMLabel {
+        font-size: 0.875rem;
+    }
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+    .sapMPanel {
+        background-color: var(--sapTile_Background);
+        border: 1px solid var(--sapContent_BorderColor);
+    }
+    
+    .sapUiCompSmartForm {
+        background-color: var(--sapGroup_ContentBackground);
+        border: 1px solid var(--sapContent_BorderColor);
+    }
+}
+
+/* High contrast theme support */
+.sapContrast .sapMPanel {
+    border: 2px solid var(--sapContent_BorderColor);
+}
+
+.sapContrast .sapMBtn {
+    border: 2px solid var(--sapContent_BorderColor);
+    font-weight: bold;
+}
+
+/* Animation classes */
+.fadeIn {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Loading states */
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+/* Error states */
+.error-message {
+    color: var(--sapErrorColor);
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--sapErrorBackground);
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+    border: 1px solid var(--sapErrorBorderColor);
+}
+
+/* Success states */
+.success-message {
+    color: var(--sapSuccessColor);
+    text-align: center;
+    padding: 1rem;
+    background-color: var(--sapSuccessBackground);
+    border-radius: 0.5rem;
+    margin: 0.5rem 0;
+    border: 1px solid var(--sapSuccessBorderColor);
+}
+
+/* Smart Table customizations */
+.sapUiCompSmartTable .sapMListTblHeaderCell {
+    background-color: var(--sapList_HeaderBackground);
+    font-weight: 600;
+}
+
+.sapUiCompSmartTable .sapMListTblRow:nth-child(even) {
+    background-color: var(--sapList_AlternatingBackground);
+}
+
+/* Smart Form customizations */
+.sapUiCompSmartForm .sapUiFormTitle {
+    color: var(--sapGroup_TitleTextColor);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.sapUiCompSmartForm .sapMInputBase:focus {
+    border-color: var(--sapField_Focus_BorderColor);
+    box-shadow: 0 0 0 2px var(--sapContent_FocusColor);
+}
