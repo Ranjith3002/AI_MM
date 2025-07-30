@@ -102,6 +102,27 @@
           "target": [
             "TargetCreate"
           ]
+        },
+        {
+          "name": "RouteMaterialDashboard",
+          "pattern": "materials",
+          "target": [
+            "TargetMaterialDashboard"
+          ]
+        },
+        {
+          "name": "RouteAIRecommendations",
+          "pattern": "ai-recommendations",
+          "target": [
+            "TargetAIRecommendations"
+          ]
+        },
+        {
+          "name": "RouteUsageTrends",
+          "pattern": "usage-trends:?query:",
+          "target": [
+            "TargetUsageTrends"
+          ]
         }
       ],
       "targets": {
@@ -118,6 +139,27 @@
           "clearControlAggregation": false,
           "viewId": "Create",
           "viewName": "Create"
+        },
+        "TargetMaterialDashboard": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "MaterialDashboard",
+          "viewName": "MaterialDashboard"
+        },
+        "TargetAIRecommendations": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "AIRecommendations",
+          "viewName": "AIRecommendations"
+        },
+        "TargetUsageTrends": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "UsageTrends",
+          "viewName": "UsageTrends"
         }
       }
     },

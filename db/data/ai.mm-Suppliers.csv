@@ -1,7 +1,7 @@
-ID;name;address;contact;email;phone;rating
-1;MetalCorp Industries;123 Industrial Ave, Steel City, SC 12345;John Smith;john.smith@metalcorp.com;+1-555-0101;5
-2;AlumTech Solutions;456 Aluminum Blvd, Metal Town, MT 67890;Sarah Johnson;sarah.j@alumtech.com;+1-555-0102;4
-3;ElectroSupply Co.;789 Electric St, Power City, PC 11111;Mike Wilson;mike.w@electrosupply.com;+1-555-0103;5
-4;BuildMaster Supplies;321 Construction Rd, Build City, BC 22222;Lisa Brown;lisa.b@buildmaster.com;+1-555-0104;4
-5;SafetyFirst Equipment;654 Safety Ave, Secure Town, ST 33333;David Lee;david.l@safetyfirst.com;+1-555-0105;5
-6;LubeTech Industries;987 Lubricant Lane, Oil City, OC 44444;Emma Davis;emma.d@lubetech.com;+1-555-0106;3
+ID;supplierID;name;address;contact;email;phone;pricePerUnit;currency_code;deliveryTime;fulfillmentRate;rating;isActive;createdAt;modifiedAt
+1;SUP-0001;MetalCorp Industries;123 Industrial Ave, Steel City, SC 12345;John Smith;john.smith@metalcorp.com;+1-555-0101;12.50;USD;5;98.5;5;true;2024-01-15T10:00:00Z;2024-01-15T10:00:00Z
+2;SUP-0002;AlumTech Solutions;456 Aluminum Blvd, Metal Town, MT 67890;Sarah Johnson;sarah.j@alumtech.com;+1-555-0102;25.75;USD;7;95.2;4;true;2024-01-15T10:00:00Z;2024-01-15T10:00:00Z
+3;SUP-0003;ElectroSupply Co.;789 Electric St, Power City, PC 11111;Mike Wilson;mike.w@electrosupply.com;+1-555-0103;3.20;USD;3;99.1;5;true;2024-01-15T10:00:00Z;2024-01-15T10:00:00Z
+4;SUP-0004;BuildMaster Supplies;321 Construction Rd, Build City, BC 22222;Lisa Brown;lisa.b@buildmaster.com;+1-555-0104;8.90;USD;10;92.8;4;true;2024-01-15T10:00:00Z;2024-01-15T10:00:00Z
+5;SUP-0005;SafetyFirst Equipment;654 Safety Ave, Secure Town, ST 33333;David Lee;david.l@safetyfirst.com;+1-555-0105;15.00;USD;4;97.3;5;true;2024-01-15T10:00:00Z;2024-01-15T10:00:00Z
+6;SUP-0006;LubeTech Industries;987 Lubricant Lane, Oil City, OC 44444;Emma Davis;emma.d@lubetech.com;+1-555-0106;22.50;USD;14;88.7;3;true;2024-01-15T10:00:00Z;2024-01-15T10:00:00Z

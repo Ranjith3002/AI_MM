@@ -1,0 +1,38 @@
+<mvc:View
+    controllerName="po.ui.controller.MaterialDashboard"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    
+    <Page
+        id="materialDashboardPage"
+        title="Material Dashboard"
+        showNavButton="true"
+        navButtonPress="onNavBack">
+        
+        <content>
+            <VBox class="sapUiMediumMargin">
+                <MessageStrip
+                    text="Welcome to the Material Dashboard! This is where you can manage your inventory and generate purchase orders."
+                    type="Information"
+                    showIcon="true"
+                    class="sapUiMediumMarginBottom"/>
+                
+                <Panel headerText="Materials Overview" class="sapUiResponsiveMargin">
+                    <content>
+                        <VBox class="sapUiMediumMargin">
+                            <Text text="• View all materials in inventory"/>
+                            <Text text="• Monitor stock levels"/>
+                            <Text text="• Generate purchase orders for low stock items"/>
+                            <Text text="• AI-powered supplier recommendations"/>
+                            <Button
+                                text="Coming Soon - Full Dashboard"
+                                type="Emphasized"
+                                enabled="false"
+                                class="sapUiMediumMarginTop"/>
+                        </VBox>
+                    </content>
+                </Panel>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

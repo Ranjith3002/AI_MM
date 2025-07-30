@@ -1,0 +1,38 @@
+<mvc:View
+    controllerName="po.ui.controller.AIRecommendations"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    
+    <Page
+        id="aiRecommendationsPage"
+        title="AI Recommendations"
+        showNavButton="true"
+        navButtonPress="onNavBack">
+        
+        <content>
+            <VBox class="sapUiMediumMargin">
+                <MessageStrip
+                    text="Welcome to AI Recommendations! Ask questions about your procurement data and get intelligent insights."
+                    type="Information"
+                    showIcon="true"
+                    class="sapUiMediumMarginBottom"/>
+                
+                <Panel headerText="AI Assistant" class="sapUiResponsiveMargin">
+                    <content>
+                        <VBox class="sapUiMediumMargin">
+                            <Text text="• Ask natural language questions about procurement"/>
+                            <Text text="• Get supplier recommendations"/>
+                            <Text text="• Analyze usage trends"/>
+                            <Text text="• Receive smart procurement insights"/>
+                            <Button
+                                text="Coming Soon - AI Chat Interface"
+                                type="Emphasized"
+                                enabled="false"
+                                class="sapUiMediumMarginTop"/>
+                        </VBox>
+                    </content>
+                </Panel>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

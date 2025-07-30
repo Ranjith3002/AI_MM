@@ -1,0 +1,38 @@
+<mvc:View
+    controllerName="po.ui.controller.UsageTrends"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    
+    <Page
+        id="usageTrendsPage"
+        title="Usage Trends Analysis"
+        showNavButton="true"
+        navButtonPress="onNavBack">
+        
+        <content>
+            <VBox class="sapUiMediumMargin">
+                <MessageStrip
+                    text="Welcome to Usage Trends! Analyze material usage patterns and get AI-powered insights."
+                    type="Information"
+                    showIcon="true"
+                    class="sapUiMediumMarginBottom"/>
+                
+                <Panel headerText="Usage Analysis" class="sapUiResponsiveMargin">
+                    <content>
+                        <VBox class="sapUiMediumMargin">
+                            <Text text="• View material usage over time"/>
+                            <Text text="• Analyze consumption patterns"/>
+                            <Text text="• Get AI trend analysis"/>
+                            <Text text="• Predict future requirements"/>
+                            <Button
+                                text="Coming Soon - Usage Charts & Analysis"
+                                type="Emphasized"
+                                enabled="false"
+                                class="sapUiMediumMarginTop"/>
+                        </VBox>
+                    </content>
+                </Panel>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

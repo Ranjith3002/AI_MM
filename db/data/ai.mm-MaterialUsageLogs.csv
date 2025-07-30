@@ -1,0 +1,11 @@
+ID;materialID;material;usedQty;usedOn;usedBy;department;project;notes;createdAt;modifiedAt
+1;MAT-0001;Steel Rods 10mm;50;2024-07-01;John Smith;Construction;Building A Foundation;Used for foundation reinforcement;2024-07-01T08:00:00Z;2024-07-01T08:00:00Z
+2;MAT-0001;Steel Rods 10mm;75;2024-07-15;Mike Johnson;Construction;Building A Foundation;Additional reinforcement needed;2024-07-15T09:30:00Z;2024-07-15T09:30:00Z
+3;MAT-0002;Aluminum Sheets 2mm;25;2024-07-05;Sarah Wilson;Manufacturing;Product Line B;Cladding material for new product;2024-07-05T14:20:00Z;2024-07-05T14:20:00Z
+4;MAT-0003;Copper Wire 2.5mm;200;2024-07-10;David Brown;Electrical;Wiring Project C;Main electrical installation;2024-07-10T11:15:00Z;2024-07-10T11:15:00Z
+5;MAT-0004;Concrete Mix;15;2024-07-08;Lisa Davis;Construction;Parking Lot;Small repair work;2024-07-08T16:45:00Z;2024-07-08T16:45:00Z
+6;MAT-0005;Safety Helmets;5;2024-07-12;Emma Wilson;Safety;New Employee Onboarding;Safety equipment for new hires;2024-07-12T10:30:00Z;2024-07-12T10:30:00Z
+7;MAT-0001;Steel Rods 10mm;30;2024-06-20;John Smith;Construction;Building B Foundation;Previous month usage;2024-06-20T08:00:00Z;2024-06-20T08:00:00Z
+8;MAT-0002;Aluminum Sheets 2mm;40;2024-06-25;Sarah Wilson;Manufacturing;Product Line A;Previous month usage;2024-06-25T14:20:00Z;2024-06-25T14:20:00Z
+9;MAT-0003;Copper Wire 2.5mm;150;2024-06-15;David Brown;Electrical;Maintenance Work;Previous month usage;2024-06-15T11:15:00Z;2024-06-15T11:15:00Z
+10;MAT-0004;Concrete Mix;20;2024-06-10;Lisa Davis;Construction;Sidewalk Repair;Previous month usage;2024-06-10T16:45:00Z;2024-06-10T16:45:00Z

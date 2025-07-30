@@ -1,20 +1,47 @@
 <mvc:View
     controllerName="po.ui.controller.Main"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns:core="sap.ui.core"
     xmlns="sap.m">
 
-    <Page id="page" title="Purchase Orders" showNavButton="false">
+    <Page id="page" title="AI-Powered Procurement System" showNavButton="false">
         <content>
             <VBox class="sapUiMediumMargin">
-                <!-- Header with Create Button -->
+                
+                <!-- Simple Navigation -->
+                <Panel headerText="Smart Procurement Dashboard" class="sapUiResponsiveMargin">
+                    <content>
+                        <VBox class="sapUiMediumMargin">
+                            <Text text="Welcome to the AI-Powered Procurement System" class="sapUiMediumMarginBottom"/>
+                            <HBox class="sapUiSmallMarginBottom">
+                                <Button
+                                    text="Material Dashboard"
+                                    icon="sap-icon://product"
+                                    type="Emphasized"
+                                    press="onNavigateToMaterialDashboard"
+                                    class="sapUiTinyMarginEnd"/>
+                                <Button
+                                    text="AI Recommendations"
+                                    icon="sap-icon://lightbulb"
+                                    type="Emphasized"
+                                    press="onNavigateToAIRecommendations"
+                                    class="sapUiTinyMarginEnd"/>
+                                <Button
+                                    text="Usage Trends"
+                                    icon="sap-icon://trend-up"
+                                    type="Emphasized"
+                                    press="onNavigateToUsageTrends"/>
+                            </HBox>
+                        </VBox>
+                    </content>
+                </Panel>
+                
+                <!-- Purchase Orders Table -->
                 <Panel headerText="Purchase Orders" class="sapUiResponsiveMargin">
                     <headerToolbar>
                         <Toolbar>
                             <Title text="Purchase Orders" level="H2"/>
                             <ToolbarSpacer/>
                             <Button
-                                id="createButton"
                                 text="Create Purchase Order"
                                 type="Emphasized"
                                 icon="sap-icon://add"
@@ -23,16 +50,6 @@
                     </headerToolbar>
 
                     <content>
-                        <!-- Search Bar -->
-                        <SearchField
-                            id="searchField"
-                            placeholder="Search Purchase Orders..."
-                            search="onSearch"
-                            width="20rem"
-                            class="sapUiMediumMarginBottom"/>
-
-                        <!-- Regular Table -->
-                            
                         <Table
                             id="table"
                             mode="SingleSelect"
@@ -43,8 +60,18 @@
 
                             <headerToolbar>
                                 <OverflowToolbar design="Transparent">
-                                    <Title id="tableHeader" text="Purchase Orders List"/>
+                                    <Title text="Purchase Orders List"/>
                                     <ToolbarSpacer/>
+                                    <Button
+                                        text="Export PDF"
+                                        icon="sap-icon://pdf-attachment"
+                                        press="onExportPDF"
+                                        class="sapUiTinyMarginEnd"/>
+                                    <Button
+                                        text="Export Excel"
+                                        icon="sap-icon://excel-attachment"
+                                        press="onExportExcel"
+                                        class="sapUiTinyMarginEnd"/>
                                     <Button
                                         text="Refresh"
                                         icon="sap-icon://refresh"
@@ -53,62 +80,41 @@
                             </headerToolbar>
 
                             <columns>
-                                <Column width="12em">
-                                    <Text text="PO ID"/>
+                                <Column>
+                                    <Text text="PO Number"/>
                                 </Column>
-                                <Column minScreenWidth="Tablet" demandPopin="true">
+                                <Column>
                                     <Text text="Material"/>
                                 </Column>
-                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="End">
-                                    <Text text="Quantity"/>
-                                </Column>
-                                <Column minScreenWidth="Tablet" demandPopin="true">
+                                <Column>
                                     <Text text="Supplier"/>
                                 </Column>
-                                <Column minScreenWidth="Desktop" demandPopin="true" hAlign="End">
-                                    <Text text="Total Amount"/>
-                                </Column>
-                                <Column minScreenWidth="Desktop" demandPopin="true">
+                                <Column>
                                     <Text text="Status"/>
                                 </Column>
-                                <Column width="8em">
-                                    <Text text="Actions"/>
+                                <Column>
+                                    <Text text="Total Amount"/>
                                 </Column>
                             </columns>
 
                             <items>
                                 <ColumnListItem press="onItemPress">
                                     <cells>
-                                        <ObjectIdentifier
-                                            title="{orderNumber}"
-                                            text="{createdAt}"/>
+                                        <Text text="{orderNumber}"/>
                                         <Text text="{material}"/>
-                                        <ObjectNumber
-                                            number="{quantity}"
-                                            unit="{unit}"
-                                            emphasized="false"/>
                                         <Text text="{supplier}"/>
+                                        <ObjectStatus text="{status}" state="Information"/>
                                         <ObjectNumber
                                             number="{totalAmount}"
                                             unit="{currency_code}"
                                             emphasized="true"/>
-                                        <ObjectStatus
-                                            text="{status}"
-                                            state="{
-                                                path: 'status',
-                                                formatter: '.formatStatus'
-                                            }"/>
-                                        <Button
-                                            icon="sap-icon://detail-view"
-                                            type="Transparent"
-                                            press="onViewDetails"
-                                            tooltip="View Details"/>
                                     </cells>
                                 </ColumnListItem>
                             </items>
                         </Table>
                     </content>
                 </Panel>
+                
             </VBox>
         </content>
     </Page>

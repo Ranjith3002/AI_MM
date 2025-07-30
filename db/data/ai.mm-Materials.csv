@@ -1,7 +1,7 @@
-ID;name;description;category;unit;unitPrice;currency_code;stockLevel;minStock;supplier
-1;Steel Rods 10mm;High-grade steel rods 10mm diameter;Construction;PC;12.50;USD;500;100;MetalCorp Industries
-2;Aluminum Sheets 2mm;Lightweight aluminum sheets 2mm thick;Construction;M;25.75;USD;200;50;AlumTech Solutions
-3;Copper Wire 2.5mm;Electrical grade copper wire 2.5mm;Electrical;M;3.20;USD;1000;200;ElectroSupply Co.
-4;Concrete Mix;High-strength concrete mix;Construction;KG;8.90;USD;50;20;BuildMaster Supplies
-5;Safety Helmets;ANSI certified safety helmets;Safety;PC;15.00;USD;25;10;SafetyFirst Equipment
-6;Industrial Lubricant;High-performance industrial lubricant;Maintenance;L;22.50;USD;100;25;LubeTech Industries
+ID;materialID;name;description;category;unit;unitPrice;currency_code;stockQty;reorderLevel;maxStock;supplier;avgMonthlyUsage;createdAt;modifiedAt
+1;MAT-0001;Steel Rods 10mm;High-grade steel rods 10mm diameter;Construction;PC;12.50;USD;45;100;500;MetalCorp Industries;120;2024-01-15T10:00:00Z;2024-01-15T10:00:00Z
+2;MAT-0002;Aluminum Sheets 2mm;Lightweight aluminum sheets 2mm thick;Construction;M;25.75;USD;15;50;300;AlumTech Solutions;85;2024-01-15T10:00:00Z;2024-01-15T10:00:00Z
+3;MAT-0003;Copper Wire 2.5mm;Electrical grade copper wire 2.5mm;Electrical;M;3.20;USD;150;200;1000;ElectroSupply Co.;150;2024-01-15T10:00:00Z;2024-01-15T10:00:00Z
+4;MAT-0004;Concrete Mix;High-strength concrete mix;Construction;KG;8.90;USD;8;20;400;BuildMaster Supplies;95;2024-01-15T10:00:00Z;2024-01-15T10:00:00Z
+5;MAT-0005;Safety Helmets;ANSI certified safety helmets;Safety;PC;15.00;USD;5;10;100;SafetyFirst Equipment;25;2024-01-15T10:00:00Z;2024-01-15T10:00:00Z
+6;MAT-0006;Industrial Lubricant;High-performance industrial lubricant;Maintenance;L;22.50;USD;12;25;200;LubeTech Industries;60;2024-01-15T10:00:00Z;2024-01-15T10:00:00Z
