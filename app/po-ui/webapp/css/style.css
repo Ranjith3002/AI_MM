@@ -196,3 +196,68 @@
     border-color: var(--sapField_Focus_BorderColor);
     box-shadow: 0 0 0 2px var(--sapContent_FocusColor);
 }
+
+/* Entity Dashboard Styling */
+.entityDashboardDialog .sapMDialog {
+    max-width: 95vw !important;
+    max-height: 90vh !important;
+}
+
+.entityDashboardDialog .sapMDialogSection {
+    padding: 0 !important;
+}
+
+.entityDashboardDialog .sapMTable {
+    border: 1px solid var(--sapList_BorderColor);
+    border-radius: 0.25rem;
+}
+
+.entityDashboardDialog .sapMListTblHeaderCell {
+    background-color: var(--sapList_HeaderBackground);
+    font-weight: bold;
+    border-bottom: 2px solid var(--sapAccentColor1);
+    color: var(--sapList_HeaderTextColor);
+}
+
+.entityDashboardDialog .sapMListTblCell {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--sapList_BorderColor);
+    vertical-align: top;
+}
+
+.entityDashboardDialog .sapMText {
+    word-wrap: break-word;
+    max-width: 200px;
+    line-height: 1.4;
+}
+
+.entityDashboardDialog .sapMListTblRow:hover {
+    background-color: var(--sapList_Hover_Background);
+}
+
+/* Menu Button Styling */
+.sapMMenuBtn .sapMBtnIcon {
+    color: var(--sapButton_IconColor);
+}
+
+.sapMMenuBtn:hover .sapMBtnIcon {
+    color: var(--sapButton_Hover_TextColor);
+}
+
+.sapMMenuBtn .sapMBtnContent {
+    font-weight: 500;
+}
+
+/* Entity Dashboard Menu Items */
+.sapMMenu .sapMMenuItem {
+    padding: 0.5rem 1rem;
+}
+
+.sapMMenu .sapMMenuItem:hover {
+    background-color: var(--sapList_Hover_Background);
+}
+
+.sapMMenu .sapMMenuItem .sapUiIcon {
+    margin-right: 0.5rem;
+    color: var(--sapContent_IconColor);
+}

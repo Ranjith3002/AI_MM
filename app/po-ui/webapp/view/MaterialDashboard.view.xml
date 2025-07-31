@@ -12,24 +12,124 @@
         <content>
             <VBox class="sapUiMediumMargin">
                 <MessageStrip
-                    text="Welcome to the Material Dashboard! This is where you can manage your inventory and generate purchase orders."
+                    text="Welcome to the Material Dashboard! Monitor inventory levels and generate purchase orders automatically."
                     type="Information"
                     showIcon="true"
                     class="sapUiMediumMarginBottom"/>
-                
-                <Panel headerText="Materials Overview" class="sapUiResponsiveMargin">
+
+                <!-- Summary Cards -->
+                <HBox class="sapUiMediumMarginBottom">
+                    <Panel width="200px" height="120px" class="sapUiTinyMarginEnd">
+                        <content>
+                            <VBox alignItems="Center" justifyContent="Center" class="sapUiMediumMargin">
+                                <Title text="Total Materials" level="H4"/>
+                                <ObjectNumber
+                                    number="{materials>/summary/totalMaterials}"
+                                    emphasized="true"
+                                    state="Success"/>
+                                <Text text="In Inventory" class="sapUiTinyMarginTop"/>
+                            </VBox>
+                        </content>
+                    </Panel>
+
+                    <Panel width="200px" height="120px" class="sapUiTinyMarginEnd">
+                        <content>
+                            <VBox alignItems="Center" justifyContent="Center" class="sapUiMediumMargin">
+                                <Title text="Low Stock Items" level="H4"/>
+                                <ObjectNumber
+                                    number="{materials>/summary/lowStockCount}"
+                                    emphasized="true"
+                                    state="Error"/>
+                                <Text text="Need Attention" class="sapUiTinyMarginTop"/>
+                            </VBox>
+                        </content>
+                    </Panel>
+
+                    <Panel width="200px" height="120px">
+                        <content>
+                            <VBox alignItems="Center" justifyContent="Center" class="sapUiMediumMargin">
+                                <Title text="Inventory Value" level="H4"/>
+                                <ObjectNumber
+                                    number="{materials>/summary/inventoryValue}"
+                                    unit="USD"
+                                    emphasized="true"
+                                    state="Success"/>
+                                <Text text="Total Value" class="sapUiTinyMarginTop"/>
+                            </VBox>
+                        </content>
+                    </Panel>
+                </HBox>
+
+                <!-- Action Buttons -->
+                <HBox class="sapUiMediumMarginBottom">
+                    <Button
+                        text="Generate Purchase Orders"
+                        type="Emphasized"
+                        icon="sap-icon://add-document"
+                        press="onGeneratePO"
+                        class="sapUiTinyMarginEnd"/>
+                    <Button
+                        text="Refresh Data"
+                        icon="sap-icon://refresh"
+                        press="onRefreshData"/>
+                </HBox>
+
+                <!-- Materials Table -->
+                <Panel headerText="Materials Inventory">
                     <content>
-                        <VBox class="sapUiMediumMargin">
-                            <Text text="• View all materials in inventory"/>
-                            <Text text="• Monitor stock levels"/>
-                            <Text text="• Generate purchase orders for low stock items"/>
-                            <Text text="• AI-powered supplier recommendations"/>
-                            <Button
-                                text="Coming Soon - Full Dashboard"
-                                type="Emphasized"
-                                enabled="false"
-                                class="sapUiMediumMarginTop"/>
-                        </VBox>
+                        <Table
+                            items="{materials>/materials}"
+                            mode="SingleSelect"
+                            class="sapUiResponsiveContentPadding">
+
+                            <columns>
+                                <Column>
+                                    <Text text="Material ID"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Name"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Category"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Current Stock"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Min Stock"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Unit Price"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Supplier"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Status"/>
+                                </Column>
+                            </columns>
+
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{materials>id}"/>
+                                        <Text text="{materials>name}"/>
+                                        <Text text="{materials>category}"/>
+                                        <ObjectNumber
+                                            number="{materials>currentStock}"
+                                            state="{path: 'materials>status', formatter: '.formatStockState'}"/>
+                                        <Text text="{materials>minStock}"/>
+                                        <ObjectNumber
+                                            number="{materials>unitPrice}"
+                                            unit="USD"/>
+                                        <Text text="{materials>supplier}"/>
+                                        <ObjectStatus
+                                            text="{materials>status}"
+                                            state="{path: 'materials>status', formatter: '.formatStatusState'}"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
                     </content>
                 </Panel>
             </VBox>

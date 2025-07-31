@@ -64,7 +64,7 @@ class AIService {
     }
     
     if (prompt.includes('usage') || prompt.includes('trend')) {
-      return 'Material usage shows consistent patterns. Monitor stock levels regularly and consider seasonal variations in demand. Recommend maintaining safety stock levels.';
+      return 'Material usage analysis shows consistent consumption patterns. Monitor stock levels regularly and consider seasonal variations in demand. Recommend maintaining optimal inventory levels based on historical usage data.';
     }
     
     if (prompt.includes('procurement') || prompt.includes('purchase')) {

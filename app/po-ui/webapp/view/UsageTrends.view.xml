@@ -4,7 +4,6 @@
     xmlns="sap.m">
     
     <Page
-        id="usageTrendsPage"
         title="Usage Trends Analysis"
         showNavButton="true"
         navButtonPress="onNavBack">
@@ -12,24 +11,129 @@
         <content>
             <VBox class="sapUiMediumMargin">
                 <MessageStrip
-                    text="Welcome to Usage Trends! Analyze material usage patterns and get AI-powered insights."
+                    text="Material usage trends analysis and consumption patterns tracking."
                     type="Information"
                     showIcon="true"
                     class="sapUiMediumMarginBottom"/>
+
+                <!-- Summary Cards -->
+                <HBox class="sapUiMediumMarginBottom">
+                    <Panel width="200px" height="100px" class="sapUiTinyMarginEnd">
+                        <content>
+                            <VBox alignItems="Center" justifyContent="Center" class="sapUiMediumMargin">
+                                <Title text="Total Consumption" level="H5"/>
+                                <Text text="{usage>/summary/totalConsumption} units" class="sapUiMediumMarginTop"/>
+                            </VBox>
+                        </content>
+                    </Panel>
+
+                    <Panel width="200px" height="100px" class="sapUiTinyMarginEnd">
+                        <content>
+                            <VBox alignItems="Center" justifyContent="Center" class="sapUiMediumMargin">
+                                <Title text="Trend Direction" level="H5"/>
+                                <Text text="{usage>/summary/trendDirection}" class="sapUiMediumMarginTop"/>
+                            </VBox>
+                        </content>
+                    </Panel>
+
+                    <Panel width="200px" height="100px">
+                        <content>
+                            <VBox alignItems="Center" justifyContent="Center" class="sapUiMediumMargin">
+                                <Title text="Top Material" level="H5"/>
+                                <Text text="{usage>/summary/topMaterial}" class="sapUiMediumMarginTop"/>
+                            </VBox>
+                        </content>
+                    </Panel>
+                </HBox>
+
+                <!-- Action Buttons -->
+                <HBox class="sapUiMediumMarginBottom">
+                    <Button
+                        text="Analyze Trends"
+                        type="Emphasized"
+                        icon="sap-icon://trend-up"
+                        press="onAnalyzeTrends"
+                        class="sapUiTinyMarginEnd"/>
+                    <Button
+                        text="Export Data"
+                        icon="sap-icon://excel-attachment"
+                        press="onExportData"/>
+                </HBox>
                 
-                <Panel headerText="Usage Analysis" class="sapUiResponsiveMargin">
+                <!-- Usage Trends Table -->
+                <Panel headerText="Material Usage Trends">
                     <content>
-                        <VBox class="sapUiMediumMargin">
-                            <Text text="• View material usage over time"/>
-                            <Text text="• Analyze consumption patterns"/>
-                            <Text text="• Get AI trend analysis"/>
-                            <Text text="• Predict future requirements"/>
-                            <Button
-                                text="Coming Soon - Usage Charts & Analysis"
-                                type="Emphasized"
-                                enabled="false"
-                                class="sapUiMediumMarginTop"/>
-                        </VBox>
+                        <Table
+                            items="{usage>/trends}"
+                            mode="SingleSelect"
+                            class="sapUiResponsiveContentPadding">
+
+                            <columns>
+                                <Column>
+                                    <Text text="Material"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Category"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Jan"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Feb"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Mar"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Apr"/>
+                                </Column>
+                                <Column>
+                                    <Text text="May"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Jun"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Trend"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Avg Usage"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Status"/>
+                                </Column>
+                            </columns>
+
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{usage>material}"/>
+                                        <Text text="{usage>category}"/>
+                                        <Text text="{usage>jan}"/>
+                                        <Text text="{usage>feb}"/>
+                                        <Text text="{usage>mar}"/>
+                                        <Text text="{usage>apr}"/>
+                                        <Text text="{usage>may}"/>
+                                        <Text text="{usage>jun}"/>
+                                        <Text text="{usage>trend}"/>
+                                        <Text text="{usage>avgUsage}"/>
+                                        <Text text="{usage>status}"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </content>
+                </Panel>
+
+                <!-- Usage Insights -->
+                <Panel headerText="Usage Insights" class="sapUiMediumMarginTop">
+                    <content>
+                        <List items="{usage>/insights}">
+                            <StandardListItem
+                                title="{usage>type}"
+                                description="{usage>message}"
+                                icon="sap-icon://lightbulb"/>
+                        </List>
                     </content>
                 </Panel>
             </VBox>

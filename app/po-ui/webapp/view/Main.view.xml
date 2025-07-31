@@ -1,6 +1,7 @@
 <mvc:View
     controllerName="po.ui.controller.Main"
     xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
     xmlns="sap.m">
 
     <Page id="page" title="AI-Powered Procurement System" showNavButton="false">
@@ -76,6 +77,66 @@
                                         text="Refresh"
                                         icon="sap-icon://refresh"
                                         press="onRefresh"/>
+                                    <MenuButton
+                                        text="Entity Dashboard"
+                                        icon="sap-icon://database"
+                                        buttonMode="Split"
+                                        useDefaultActionOnly="false">
+                                        <menu>
+                                            <Menu>
+                                                <items>
+                                                    <MenuItem
+                                                        text="Materials"
+                                                        icon="sap-icon://product"
+                                                        press="onViewEntity">
+                                                        <customData>
+                                                            <core:CustomData key="entity" value="Materials"/>
+                                                        </customData>
+                                                    </MenuItem>
+                                                    <MenuItem
+                                                        text="Suppliers"
+                                                        icon="sap-icon://supplier"
+                                                        press="onViewEntity">
+                                                        <customData>
+                                                            <core:CustomData key="entity" value="Suppliers"/>
+                                                        </customData>
+                                                    </MenuItem>
+                                                    <MenuItem
+                                                        text="Purchase Orders"
+                                                        icon="sap-icon://document"
+                                                        press="onViewEntity">
+                                                        <customData>
+                                                            <core:CustomData key="entity" value="PurchaseOrders"/>
+                                                        </customData>
+                                                    </MenuItem>
+                                                    <MenuItem
+                                                        text="Stock Movements"
+                                                        icon="sap-icon://inventory"
+                                                        press="onViewEntity">
+                                                        <customData>
+                                                            <core:CustomData key="entity" value="StockMovements"/>
+                                                        </customData>
+                                                    </MenuItem>
+                                                    <MenuItem
+                                                        text="Material Usage Logs"
+                                                        icon="sap-icon://bar-chart"
+                                                        press="onViewEntity">
+                                                        <customData>
+                                                            <core:CustomData key="entity" value="MaterialUsageLogs"/>
+                                                        </customData>
+                                                    </MenuItem>
+                                                    <MenuItem
+                                                        text="AI Insights"
+                                                        icon="sap-icon://lightbulb"
+                                                        press="onViewEntity">
+                                                        <customData>
+                                                            <core:CustomData key="entity" value="AIInsights"/>
+                                                        </customData>
+                                                    </MenuItem>
+                                                </items>
+                                            </Menu>
+                                        </menu>
+                                    </MenuButton>
                                 </OverflowToolbar>
                             </headerToolbar>
 

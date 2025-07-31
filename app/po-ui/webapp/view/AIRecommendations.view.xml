@@ -1,6 +1,7 @@
 <mvc:View
     controllerName="po.ui.controller.AIRecommendations"
     xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
     xmlns="sap.m">
     
     <Page
@@ -12,24 +13,66 @@
         <content>
             <VBox class="sapUiMediumMargin">
                 <MessageStrip
-                    text="Welcome to AI Recommendations! Ask questions about your procurement data and get intelligent insights."
+                    text="AI-powered procurement insights and recommendations based on your data analysis."
                     type="Information"
                     showIcon="true"
                     class="sapUiMediumMarginBottom"/>
-                
-                <Panel headerText="AI Assistant" class="sapUiResponsiveMargin">
+
+                <!-- AI Chat Interface -->
+                <Panel headerText="Ask AI Assistant" class="sapUiMediumMarginBottom">
                     <content>
                         <VBox class="sapUiMediumMargin">
-                            <Text text="• Ask natural language questions about procurement"/>
-                            <Text text="• Get supplier recommendations"/>
-                            <Text text="• Analyze usage trends"/>
-                            <Text text="• Receive smart procurement insights"/>
-                            <Button
-                                text="Coming Soon - AI Chat Interface"
-                                type="Emphasized"
-                                enabled="false"
-                                class="sapUiMediumMarginTop"/>
+                            <HBox class="sapUiSmallMarginBottom">
+                                <Input
+                                    id="aiQuestionInput"
+                                    placeholder="Ask me about costs, inventory, suppliers, or trends..."
+                                    width="400px"
+                                    class="sapUiTinyMarginEnd"/>
+                                <Button
+                                    text="Ask AI"
+                                    type="Emphasized"
+                                    icon="sap-icon://discussion-2"
+                                    press="onAskAI"/>
+                            </HBox>
+
+                            <!-- Chat History -->
+                            <VBox items="{ai>/chatHistory}" class="sapUiSmallMarginTop">
+                                <HBox class="sapUiTinyMarginBottom">
+                                    <Text text="{ai>type}" class="sapUiTinyMarginEnd"/>
+                                    <Text text="({ai>timestamp})" class="sapUiTinyMarginEnd"/>
+                                </HBox>
+                                <Text text="{ai>message}" class="sapUiSmallMarginBottom"/>
+                            </VBox>
                         </VBox>
+                    </content>
+                </Panel>
+
+                <!-- AI Recommendations -->
+                <Panel headerText="Smart Recommendations">
+                    <content>
+                        <List items="{ai>/recommendations}">
+                            <CustomListItem>
+                                <content>
+                                    <HBox class="sapUiMediumMargin">
+                                        <core:Icon src="{ai>icon}" size="2rem" class="sapUiMediumMarginEnd"/>
+                                        <VBox class="sapUiNoMargin">
+                                            <HBox>
+                                                <Title text="{ai>title}" level="H4" class="sapUiTinyMarginEnd"/>
+                                                <ObjectStatus text="{ai>type}" state="Information"/>
+                                            </HBox>
+                                            <Text text="{ai>description}" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
+                                            <HBox class="sapUiTinyMarginTop">
+                                                <Text text="Confidence: {ai>confidence}%" class="sapUiTinyMarginEnd"/>
+                                                <Button
+                                                    text="Apply Recommendation"
+                                                    type="Accept"
+                                                    press="onApplyRecommendation"/>
+                                            </HBox>
+                                        </VBox>
+                                    </HBox>
+                                </content>
+                            </CustomListItem>
+                        </List>
                     </content>
                 </Panel>
             </VBox>

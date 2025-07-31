@@ -119,7 +119,7 @@
         },
         {
           "name": "RouteUsageTrends",
-          "pattern": "usage-trends:?query:",
+          "pattern": "usage-trends",
           "target": [
             "TargetUsageTrends"
           ]
