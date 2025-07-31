@@ -30,7 +30,13 @@
                                     text="Usage Trends"
                                     icon="sap-icon://trend-up"
                                     type="Emphasized"
-                                    press="onNavigateToUsageTrends"/>
+                                    press="onNavigateToUsageTrends"
+                                    class="sapUiTinyMarginEnd"/>
+                                <Button
+                                    text="Suggested POs"
+                                    icon="sap-icon://lightbulb"
+                                    type="Emphasized"
+                                    press="onNavigateToSuggestedPOs"/>
                             </HBox>
                         </VBox>
                     </content>

@@ -1,7 +1,101 @@
 ID;materialID;name;description;category;unit;unitPrice;currency_code;stockQty;reorderLevel;maxStock;supplier;avgMonthlyUsage;createdAt;modifiedAt
-1;MAT-0001;Steel Rods 10mm;High-grade steel rods 10mm diameter;Construction;PC;12.50;USD;45;100;500;MetalCorp Industries;120;2024-01-15T10:00:00Z;2024-01-15T10:00:00Z
-2;MAT-0002;Aluminum Sheets 2mm;Lightweight aluminum sheets 2mm thick;Construction;M;25.75;USD;15;50;300;AlumTech Solutions;85;2024-01-15T10:00:00Z;2024-01-15T10:00:00Z
-3;MAT-0003;Copper Wire 2.5mm;Electrical grade copper wire 2.5mm;Electrical;M;3.20;USD;150;200;1000;ElectroSupply Co.;150;2024-01-15T10:00:00Z;2024-01-15T10:00:00Z
-4;MAT-0004;Concrete Mix;High-strength concrete mix;Construction;KG;8.90;USD;8;20;400;BuildMaster Supplies;95;2024-01-15T10:00:00Z;2024-01-15T10:00:00Z
-5;MAT-0005;Safety Helmets;ANSI certified safety helmets;Safety;PC;15.00;USD;5;10;100;SafetyFirst Equipment;25;2024-01-15T10:00:00Z;2024-01-15T10:00:00Z
-6;MAT-0006;Industrial Lubricant;High-performance industrial lubricant;Maintenance;L;22.50;USD;12;25;200;LubeTech Industries;60;2024-01-15T10:00:00Z;2024-01-15T10:00:00Z
+1;MAT-0001;Steel Rods 10mm;High-grade steel rods 10mm diameter for construction;Construction;PC;12.50;USD;245;100;500;MetalCorp Industries;120;2024-01-15T10:00:00Z;2024-07-30T10:00:00Z
+2;MAT-0002;Aluminum Sheets 2mm;Lightweight aluminum sheets 2mm thick for fabrication;Construction;M2;25.75;USD;85;50;300;AlumTech Solutions;85;2024-01-15T10:00:00Z;2024-07-30T10:00:00Z
+3;MAT-0003;Copper Wire 2.5mm;Electrical grade copper wire 2.5mm for wiring;Electrical;M;3.20;USD;450;200;1000;ElectroSupply Co.;150;2024-01-15T10:00:00Z;2024-07-30T10:00:00Z
+4;MAT-0004;Concrete Mix;High-strength concrete mix for foundations;Construction;KG;8.90;USD;180;20;400;BuildMaster Supplies;95;2024-01-15T10:00:00Z;2024-07-30T10:00:00Z
+5;MAT-0005;Safety Helmets;ANSI certified safety helmets with chin strap;Safety;PC;15.00;USD;75;30;150;SafetyFirst Equipment;45;2024-01-15T10:00:00Z;2024-07-30T10:00:00Z
+6;MAT-0006;Industrial Lubricant;High-performance synthetic industrial lubricant;Maintenance;L;22.50;USD;42;25;100;LubeTech Industries;35;2024-01-15T10:00:00Z;2024-07-30T10:00:00Z
+7;MAT-0007;Welding Electrodes;E7018 welding electrodes for structural welding;Welding;KG;18.75;USD;65;40;200;WeldPro Supplies;60;2024-01-15T10:00:00Z;2024-07-30T10:00:00Z
+8;MAT-0008;PVC Pipes 4 inch;Schedule 40 PVC pipes 4 inch diameter;Plumbing;M;8.45;USD;320;150;800;PipeMaster Inc;180;2024-01-16T10:00:00Z;2024-07-30T10:00:00Z
+9;MAT-0009;Stainless Steel Bolts M12;Grade 316 stainless steel bolts M12x50;Fasteners;PC;2.85;USD;890;500;2000;BoltTech Solutions;650;2024-01-16T10:00:00Z;2024-07-30T10:00:00Z
+10;MAT-0010;Hydraulic Oil ISO 46;Premium hydraulic oil ISO VG 46;Maintenance;L;12.30;USD;125;80;300;FluidTech Corp;95;2024-01-16T10:00:00Z;2024-07-30T10:00:00Z
+11;MAT-0011;LED Light Fixtures;Energy efficient LED light fixtures 40W;Electrical;PC;45.60;USD;35;20;100;LightTech Systems;25;2024-01-16T10:00:00Z;2024-07-30T10:00:00Z
+12;MAT-0012;Rubber Gaskets;EPDM rubber gaskets for sealing applications;Sealing;PC;1.25;USD;1250;800;3000;SealPro Industries;980;2024-01-16T10:00:00Z;2024-07-30T10:00:00Z
+13;MAT-0013;Carbon Steel Plates;A36 carbon steel plates 10mm thick;Construction;M2;35.80;USD;95;60;250;SteelWorks Ltd;75;2024-01-17T10:00:00Z;2024-07-30T10:00:00Z
+14;MAT-0014;Industrial Adhesive;Structural epoxy adhesive for bonding;Chemicals;KG;28.90;USD;45;30;120;ChemBond Corp;38;2024-01-17T10:00:00Z;2024-07-30T10:00:00Z
+15;MAT-0015;Ball Bearings 6205;Deep groove ball bearings 6205 series;Mechanical;PC;8.75;USD;180;100;400;BearingTech Inc;125;2024-01-17T10:00:00Z;2024-07-30T10:00:00Z
+16;MAT-0016;Insulation Foam;Polyurethane insulation foam spray;Insulation;CAN;15.40;USD;68;40;150;InsulPro Materials;52;2024-01-17T10:00:00Z;2024-07-30T10:00:00Z
+17;MAT-0017;Ceramic Tiles;Porcelain ceramic tiles 600x600mm;Flooring;M2;22.15;USD;145;80;300;TileMaster Co;95;2024-01-17T10:00:00Z;2024-07-30T10:00:00Z
+18;MAT-0018;Electric Motors 3HP;Three-phase electric motors 3HP 1800RPM;Electrical;PC;285.50;USD;12;8;25;MotorTech Industries;10;2024-01-18T10:00:00Z;2024-07-30T10:00:00Z
+19;MAT-0019;Pneumatic Cylinders;Double-acting pneumatic cylinders 50mm bore;Pneumatic;PC;125.75;USD;25;15;50;PneumaTech Corp;18;2024-01-18T10:00:00Z;2024-07-30T10:00:00Z
+20;MAT-0020;Fire Extinguishers;ABC dry chemical fire extinguishers 5lb;Safety;PC;35.90;USD;48;30;80;FireSafe Equipment;22;2024-01-18T10:00:00Z;2024-07-30T10:00:00Z
+21;MAT-0021;Titanium Rods 20mm;Grade 2 titanium rods 20mm diameter;Aerospace;M;145.80;USD;25;15;60;TitanTech Materials;12;2024-01-18T10:00:00Z;2024-07-30T10:00:00Z
+22;MAT-0022;Silicone Sealant;High-temperature silicone sealant;Sealing;TUBE;8.95;USD;185;120;400;SiliSeal Pro;145;2024-01-18T10:00:00Z;2024-07-30T10:00:00Z
+23;MAT-0023;Gear Oil SAE 90;Heavy-duty gear oil SAE 90 weight;Maintenance;L;9.85;USD;95;60;200;GearLube Corp;72;2024-01-19T10:00:00Z;2024-07-30T10:00:00Z
+24;MAT-0024;Pressure Gauges;Bourdon tube pressure gauges 0-100 PSI;Instrumentation;PC;28.45;USD;42;25;80;GaugeTech Inc;32;2024-01-19T10:00:00Z;2024-07-30T10:00:00Z
+25;MAT-0025;Fiberglass Sheets;E-glass fiberglass sheets 3mm thick;Composites;M2;18.60;USD;85;50;180;FiberTech Materials;65;2024-01-19T10:00:00Z;2024-07-30T10:00:00Z
+26;MAT-0026;Chain Hoists 2 Ton;Manual chain hoists 2 ton capacity;Lifting;PC;185.90;USD;8;5;15;LiftTech Equipment;6;2024-01-19T10:00:00Z;2024-07-30T10:00:00Z
+27;MAT-0027;Cutting Fluids;Water-soluble cutting fluids for machining;Machining;L;14.75;USD;125;80;250;MachineLube Inc;98;2024-01-19T10:00:00Z;2024-07-30T10:00:00Z
+28;MAT-0028;Expansion Joints;Rubber expansion joints 6 inch;Piping;PC;95.40;USD;18;12;35;FlexJoint Systems;14;2024-01-20T10:00:00Z;2024-07-30T10:00:00Z
+29;MAT-0029;Heat Exchangers;Plate heat exchangers 50 kW capacity;HVAC;PC;1250.00;USD;3;2;8;HeatTech Solutions;2;2024-01-20T10:00:00Z;2024-07-30T10:00:00Z
+30;MAT-0030;Abrasive Wheels;Grinding wheels 9 inch diameter;Machining;PC;12.85;USD;145;100;300;GrindTech Tools;125;2024-01-20T10:00:00Z;2024-07-30T10:00:00Z
+31;MAT-0031;Polyethylene Sheets;HDPE sheets 5mm thick black;Plastics;M2;16.25;USD;95;60;200;PolyTech Materials;75;2024-01-20T10:00:00Z;2024-07-30T10:00:00Z
+32;MAT-0032;Solenoid Valves;24V DC solenoid valves 1/2 inch;Automation;PC;68.90;USD;35;20;70;ValveTech Corp;28;2024-01-20T10:00:00Z;2024-07-30T10:00:00Z
+33;MAT-0033;Thermal Insulation;Mineral wool thermal insulation batts;Insulation;M2;8.45;USD;285;200;600;ThermalTech Inc;245;2024-01-21T10:00:00Z;2024-07-30T10:00:00Z
+34;MAT-0034;Proximity Sensors;Inductive proximity sensors M18;Automation;PC;45.60;USD;28;18;50;SensorTech Systems;22;2024-01-21T10:00:00Z;2024-07-30T10:00:00Z
+35;MAT-0035;Conveyor Belts;Rubber conveyor belts 24 inch wide;Material Handling;M;85.40;USD;45;30;100;ConveyTech Inc;38;2024-01-21T10:00:00Z;2024-07-30T10:00:00Z
+36;MAT-0036;Welding Wire ER70S-6;MIG welding wire ER70S-6 0.035 inch;Welding;KG;4.85;USD;185;120;400;WeldWire Pro;155;2024-01-21T10:00:00Z;2024-07-30T10:00:00Z
+37;MAT-0037;Centrifugal Pumps;Centrifugal pumps 5HP 3500 RPM;Pumping;PC;485.75;USD;6;4;12;PumpTech Industries;5;2024-01-21T10:00:00Z;2024-07-30T10:00:00Z
+38;MAT-0038;Flexible Hoses;Hydraulic flexible hoses 1/2 inch;Hydraulics;M;18.95;USD;125;80;250;HoseTech Corp;98;2024-01-21T10:00:00Z;2024-07-30T10:00:00Z
+39;MAT-0039;Electrical Conduit;EMT electrical conduit 3/4 inch;Electrical;M;3.85;USD;485;300;1000;ConduitTech Inc;385;2024-01-22T10:00:00Z;2024-07-30T10:00:00Z
+40;MAT-0040;Compressor Oil;Synthetic compressor oil ISO VG 100;Maintenance;L;18.60;USD;85;50;150;CompressorLube Co;68;2024-01-22T10:00:00Z;2024-07-30T10:00:00Z
+41;MAT-0041;Safety Glasses;ANSI Z87.1 safety glasses clear lens;Safety;PC;8.95;USD;125;80;200;SafeVision Inc;95;2024-01-22T10:00:00Z;2024-07-30T10:00:00Z
+42;MAT-0042;Threaded Rods M16;Galvanized threaded rods M16x1000mm;Fasteners;PC;6.45;USD;285;200;600;ThreadTech Solutions;245;2024-01-22T10:00:00Z;2024-07-30T10:00:00Z
+43;MAT-0043;Vibration Dampers;Rubber vibration dampers M12 mount;Mechanical;PC;15.80;USD;68;40;120;VibeTech Corp;52;2024-01-23T10:00:00Z;2024-07-30T10:00:00Z
+44;MAT-0044;Epoxy Coatings;Two-part epoxy floor coatings;Coatings;KG;32.90;USD;45;30;100;CoatTech Industries;38;2024-01-23T10:00:00Z;2024-07-30T10:00:00Z
+45;MAT-0045;Limit Switches;Heavy-duty limit switches IP67;Automation;PC;38.75;USD;35;20;70;SwitchTech Systems;28;2024-01-23T10:00:00Z;2024-07-30T10:00:00Z
+46;MAT-0046;Aluminum Angles;6061-T6 aluminum angles 2x2x1/4 inch;Construction;M;12.85;USD;185;120;400;AngleTech Materials;155;2024-01-23T10:00:00Z;2024-07-30T10:00:00Z
+47;MAT-0047;Pneumatic Fittings;Push-to-connect pneumatic fittings 1/4 inch;Pneumatic;PC;4.25;USD;485;300;1000;FitTech Corp;385;2024-01-23T10:00:00Z;2024-07-30T10:00:00Z
+48;MAT-0048;Grinding Compounds;Valve grinding compounds fine grade;Machining;KG;24.60;USD;25;15;60;GrindTech Chemicals;18;2024-01-24T10:00:00Z;2024-07-30T10:00:00Z
+49;MAT-0049;Flow Meters;Turbine flow meters 2 inch NPT;Instrumentation;PC;285.90;USD;8;5;15;FlowTech Instruments;6;2024-01-24T10:00:00Z;2024-07-30T10:00:00Z
+50;MAT-0050;Neoprene Sheets;Neoprene rubber sheets 3mm thick;Rubber;M2;28.45;USD;65;40;150;RubberTech Inc;52;2024-01-24T10:00:00Z;2024-07-30T10:00:00Z
+51;MAT-0051;Stainless Steel Pipes;Schedule 10 stainless steel pipes 2 inch;Plumbing;M;45.80;USD;120;80;300;SteelFlow Industries;95;2024-01-25T10:00:00Z;2024-07-30T10:00:00Z
+52;MAT-0052;Ceramic Insulators;High-voltage ceramic insulators;Electrical;PC;18.90;USD;85;50;200;CeramTech Corp;65;2024-01-25T10:00:00Z;2024-07-30T10:00:00Z
+53;MAT-0053;Hydraulic Cylinders;Single-acting hydraulic cylinders 75mm;Hydraulics;PC;195.50;USD;15;10;40;HydroTech Systems;12;2024-01-25T10:00:00Z;2024-07-30T10:00:00Z
+54;MAT-0054;Industrial Filters;HEPA air filters 24x24x12;Filtration;PC;85.60;USD;25;15;60;FilterPro Inc;18;2024-01-25T10:00:00Z;2024-07-30T10:00:00Z
+55;MAT-0055;Magnetic Contactors;3-pole magnetic contactors 25A;Electrical;PC;68.75;USD;35;20;80;ElectroMag Solutions;28;2024-01-26T10:00:00Z;2024-07-30T10:00:00Z
+56;MAT-0056;Polyurethane Wheels;Polyurethane wheels 8 inch diameter;Material Handling;PC;42.30;USD;45;30;100;WheelTech Industries;38;2024-01-26T10:00:00Z;2024-07-30T10:00:00Z
+57;MAT-0057;Brass Fittings;Brass pipe fittings 1 inch NPT;Plumbing;PC;12.95;USD;185;120;400;BrassTech Corp;155;2024-01-26T10:00:00Z;2024-07-30T10:00:00Z
+58;MAT-0058;Temperature Sensors;RTD temperature sensors Pt100;Instrumentation;PC;95.40;USD;28;18;60;TempTech Systems;22;2024-01-26T10:00:00Z;2024-07-30T10:00:00Z
+59;MAT-0059;Conveyor Rollers;Steel conveyor rollers 2 inch diameter;Material Handling;PC;28.75;USD;65;40;150;RollerTech Inc;52;2024-01-27T10:00:00Z;2024-07-30T10:00:00Z
+60;MAT-0060;Cutting Tools;Carbide cutting tools for CNC;Machining;PC;125.80;USD;45;30;100;CutTech Tools;38;2024-01-27T10:00:00Z;2024-07-30T10:00:00Z
+61;MAT-0061;Pneumatic Actuators;Rotary pneumatic actuators 90 degree;Pneumatic;PC;185.60;USD;18;12;40;ActuaTech Corp;15;2024-01-27T10:00:00Z;2024-07-30T10:00:00Z
+62;MAT-0062;Safety Harnesses;Full-body safety harnesses ANSI;Safety;PC;85.90;USD;25;15;50;SafetyPro Equipment;20;2024-01-27T10:00:00Z;2024-07-30T10:00:00Z
+63;MAT-0063;Electrical Panels;NEMA 4X electrical enclosures;Electrical;PC;285.75;USD;12;8;25;PanelTech Industries;10;2024-01-28T10:00:00Z;2024-07-30T10:00:00Z
+64;MAT-0064;Rubber Mats;Anti-fatigue rubber mats 3x5 feet;Safety;PC;45.20;USD;35;20;80;ComfortTech Mats;28;2024-01-28T10:00:00Z;2024-07-30T10:00:00Z
+65;MAT-0065;Gear Reducers;Worm gear reducers 20:1 ratio;Mechanical;PC;385.90;USD;8;5;20;GearTech Solutions;6;2024-01-28T10:00:00Z;2024-07-30T10:00:00Z
+66;MAT-0066;Plastic Sheets;Acrylic plastic sheets 6mm clear;Plastics;M2;32.45;USD;85;50;200;PlastiTech Materials;68;2024-01-28T10:00:00Z;2024-07-30T10:00:00Z
+67;MAT-0067;Pipe Insulation;Foam pipe insulation 2 inch ID;Insulation;M;8.95;USD;285;200;600;InsulaTech Corp;245;2024-01-29T10:00:00Z;2024-07-30T10:00:00Z
+68;MAT-0068;Level Switches;Float level switches for tanks;Instrumentation;PC;125.60;USD;15;10;35;LevelTech Systems;12;2024-01-29T10:00:00Z;2024-07-30T10:00:00Z
+69;MAT-0069;Timing Belts;Synchronous timing belts HTD 8M;Mechanical;PC;68.40;USD;45;30;100;BeltTech Industries;38;2024-01-29T10:00:00Z;2024-07-30T10:00:00Z
+70;MAT-0070;Chemical Pumps;Centrifugal chemical pumps PVDF;Pumping;PC;685.75;USD;5;3;12;ChemPump Corp;4;2024-01-29T10:00:00Z;2024-07-30T10:00:00Z
+71;MAT-0071;Wire Rope;Galvanized wire rope 1/4 inch;Lifting;M;4.85;USD;485;300;1000;CableTech Solutions;385;2024-01-30T10:00:00Z;2024-07-30T10:00:00Z
+72;MAT-0072;Pressure Switches;Adjustable pressure switches 0-150 PSI;Instrumentation;PC;85.30;USD;25;15;60;PressureTech Inc;20;2024-01-30T10:00:00Z;2024-07-30T10:00:00Z
+73;MAT-0073;Roller Chains;ANSI 60 roller chains 10 feet;Mechanical;PC;45.90;USD;65;40;150;ChainTech Corp;52;2024-01-30T10:00:00Z;2024-07-30T10:00:00Z
+74;MAT-0074;Spray Nozzles;Stainless steel spray nozzles;Spraying;PC;28.65;USD;85;50;200;SprayTech Systems;68;2024-01-30T10:00:00Z;2024-07-30T10:00:00Z
+75;MAT-0075;Flexible Couplings;Jaw flexible couplings 1 inch bore;Mechanical;PC;95.80;USD;35;20;80;CouplingTech Inc;28;2024-01-31T10:00:00Z;2024-07-30T10:00:00Z
+76;MAT-0076;Air Compressors;Rotary screw air compressors 10HP;Pneumatic;PC;2850.00;USD;2;1;5;CompressTech Industries;1;2024-01-31T10:00:00Z;2024-07-30T10:00:00Z
+77;MAT-0077;Sealing Tape;PTFE thread sealing tape;Sealing;ROLL;3.45;USD;185;120;400;SealTech Products;155;2024-01-31T10:00:00Z;2024-07-30T10:00:00Z
+78;MAT-0078;Magnetic Separators;Magnetic separators for conveyors;Material Handling;PC;485.60;USD;6;4;15;MagTech Solutions;5;2024-01-31T10:00:00Z;2024-07-30T10:00:00Z
+79;MAT-0079;Cooling Fans;Axial cooling fans 120mm 24V;Cooling;PC;35.75;USD;45;30;100;CoolTech Systems;38;2024-02-01T10:00:00Z;2024-07-30T10:00:00Z
+80;MAT-0080;Pipe Clamps;Heavy-duty pipe clamps 4 inch;Piping;PC;18.90;USD;125;80;250;ClampTech Corp;98;2024-02-01T10:00:00Z;2024-07-30T10:00:00Z
+81;MAT-0081;Electrical Cables;Multi-conductor cables 12 AWG;Electrical;M;5.85;USD;385;250;800;CableTech Industries;315;2024-02-01T10:00:00Z;2024-07-30T10:00:00Z
+82;MAT-0082;Vacuum Pumps;Rotary vane vacuum pumps 1HP;Vacuum;PC;685.90;USD;4;3;10;VacuumTech Corp;3;2024-02-01T10:00:00Z;2024-07-30T10:00:00Z
+83;MAT-0083;Shaft Seals;Mechanical shaft seals 25mm;Sealing;PC;45.60;USD;65;40;150;SealMaster Inc;52;2024-02-02T10:00:00Z;2024-07-30T10:00:00Z
+84;MAT-0084;Control Valves;Pneumatic control valves 2 inch;Automation;PC;385.75;USD;12;8;30;ValveMaster Corp;10;2024-02-02T10:00:00Z;2024-07-30T10:00:00Z
+85;MAT-0085;Heat Sinks;Aluminum heat sinks for electronics;Cooling;PC;28.90;USD;85;50;200;HeatTech Components;68;2024-02-02T10:00:00Z;2024-07-30T10:00:00Z
+86;MAT-0086;Pressure Vessels;Stainless steel pressure vessels 50L;Pressure;PC;1285.60;USD;3;2;8;VesselTech Industries;2;2024-02-02T10:00:00Z;2024-07-30T10:00:00Z
+87;MAT-0087;Filtration Media;Pleated filter media 20x25x4;Filtration;PC;65.40;USD;45;30;100;FilterMedia Corp;38;2024-02-03T10:00:00Z;2024-07-30T10:00:00Z
+88;MAT-0088;Pneumatic Tubing;Polyurethane pneumatic tubing 8mm;Pneumatic;M;2.85;USD;685;400;1500;TubeTech Solutions;585;2024-02-03T10:00:00Z;2024-07-30T10:00:00Z
+89;MAT-0089;Safety Switches;Emergency stop safety switches;Safety;PC;125.80;USD;25;15;60;SafeSwitch Systems;20;2024-02-03T10:00:00Z;2024-07-30T10:00:00Z
+90;MAT-0090;Gear Motors;AC gear motors 1HP 1800RPM;Mechanical;PC;485.90;USD;8;5;20;MotorGear Industries;6;2024-02-03T10:00:00Z;2024-07-30T10:00:00Z
+91;MAT-0091;Flexible Ducts;Flexible air ducts 6 inch diameter;HVAC;M;18.75;USD;185;120;400;DuctTech Corp;155;2024-02-04T10:00:00Z;2024-07-30T10:00:00Z
+92;MAT-0092;Pressure Regulators;Air pressure regulators 0-100 PSI;Pneumatic;PC;85.60;USD;35;20;80;RegulatorTech Inc;28;2024-02-04T10:00:00Z;2024-07-30T10:00:00Z
+93;MAT-0093;Conveyor Motors;Conveyor drive motors 2HP;Material Handling;PC;385.75;USD;10;6;25;ConveyMotor Corp;8;2024-02-04T10:00:00Z;2024-07-30T10:00:00Z
+94;MAT-0094;Sealing Rings;O-ring sealing rings various sizes;Sealing;SET;25.90;USD;125;80;300;RingTech Solutions;98;2024-02-04T10:00:00Z;2024-07-30T10:00:00Z
+95;MAT-0095;Flow Control Valves;Manual flow control valves 1 inch;Flow Control;PC;125.40;USD;28;18;60;FlowTech Valves;22;2024-02-05T10:00:00Z;2024-07-30T10:00:00Z
+96;MAT-0096;Electrical Transformers;Step-down transformers 480V to 120V;Electrical;PC;685.80;USD;5;3;12;TransformerTech Inc;4;2024-02-05T10:00:00Z;2024-07-30T10:00:00Z
+97;MAT-0097;Pneumatic Cylinders 100mm;Double-acting cylinders 100mm bore;Pneumatic;PC;185.90;USD;18;12;40;CylinderTech Corp;15;2024-02-05T10:00:00Z;2024-07-30T10:00:00Z
+98;MAT-0098;Safety Barriers;Portable safety barriers yellow;Safety;PC;125.60;USD;25;15;50;BarrierTech Systems;20;2024-02-05T10:00:00Z;2024-07-30T10:00:00Z
+99;MAT-0099;Hydraulic Filters;Return line hydraulic filters;Hydraulics;PC;45.80;USD;65;40;150;FilterTech Hydraulics;52;2024-02-06T10:00:00Z;2024-07-30T10:00:00Z
+100;MAT-0100;Industrial Cleaners;Biodegradable industrial cleaners;Chemicals;L;18.95;USD;85;50;200;CleanTech Solutions;68;2024-02-06T10:00:00Z;2024-07-30T10:00:00Z

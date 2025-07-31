@@ -3,8 +3,8 @@ require('dotenv').config();
 
 class AIService {
   constructor() {
-    this.apiKey = process.env.GEMINI_API_KEY;
-    this.apiUrl = process.env.GEMINI_API_URL;
+    this.apiKey = process.env.GEMINI_API_KEY || 'AIzaSyAwIPGaUbMhqmTTNTKQEeI_buF2ehmXQ6k';
+    this.apiUrl = process.env.GEMINI_API_URL || 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
     this.timeout = 10000; // 10 seconds timeout
   }
 
@@ -166,18 +166,269 @@ class AIService {
   async generateProcurementSuggestions(query, context = {}) {
     const prompt = `
     As a procurement AI assistant, answer this query: "${query}"
-    
+
     Context data available:
     - Total materials: ${context.totalMaterials || 'N/A'}
     - Low stock items: ${context.lowStockItems || 'N/A'}
     - Pending POs: ${context.pendingPOs || 'N/A'}
     - Top suppliers: ${context.topSuppliers || 'N/A'}
-    
+
     Provide actionable insights and recommendations in a professional tone.
     Keep response under 300 words.
     `;
-    
+
     return await this.generateContent(prompt);
+  }
+
+  /**
+   * Generate smart PO suggestions based on low stock materials and supplier data
+   * @param {Array} lowStockMaterials - Materials with low stock
+   * @param {Array} suppliers - Available suppliers
+   * @param {Array} usageLogs - Historical usage data
+   * @returns {Promise<Array>} - Array of PO suggestions
+   */
+  async generatePOSuggestions(lowStockMaterials, suppliers, usageLogs = []) {
+    try {
+      console.log('🤖 Generating AI-powered PO suggestions...');
+
+      if (!lowStockMaterials || lowStockMaterials.length === 0) {
+        return [];
+      }
+
+      const suggestions = [];
+
+      for (const material of lowStockMaterials) {
+        // Find suitable suppliers for this material
+        const suitableSuppliers = suppliers.filter(s =>
+          s.isActive &&
+          (s.name.toLowerCase().includes(material.category?.toLowerCase() || '') ||
+           material.supplier?.toLowerCase().includes(s.name.toLowerCase()) ||
+           s.rating >= 3)
+        );
+
+        if (suitableSuppliers.length === 0) continue;
+
+        // Calculate suggested quantity
+        const currentStock = material.stockQty || 0;
+        const reorderLevel = material.reorderLevel || 10;
+        const maxStock = material.maxStock || 100;
+        const avgUsage = material.avgMonthlyUsage || 5;
+
+        // Smart quantity calculation: fill to 80% of max stock or 3 months of usage
+        const targetQty = Math.min(
+          Math.floor(maxStock * 0.8),
+          avgUsage * 3,
+          maxStock
+        );
+        const suggestedQty = Math.max(targetQty - currentStock, reorderLevel);
+
+        // Use AI to select best supplier and generate reasoning
+        const supplierRecommendation = await this.recommendSupplierWithAI(
+          material,
+          suitableSuppliers,
+          usageLogs
+        );
+
+        const bestSupplier = suitableSuppliers.find(s =>
+          s.name === supplierRecommendation.supplier
+        ) || suitableSuppliers[0];
+
+        // Calculate delivery date
+        const deliveryDays = bestSupplier.deliveryTime || 7;
+        const deliveryDate = new Date();
+        deliveryDate.setDate(deliveryDate.getDate() + deliveryDays);
+
+        // Create suggestion
+        const suggestion = {
+          materialID: material.materialID,
+          materialName: material.name,
+          category: material.category,
+          currentStock: currentStock,
+          reorderLevel: reorderLevel,
+          suggestedQuantity: suggestedQty,
+          unit: material.unit || 'PC',
+          supplierID: bestSupplier.supplierID,
+          supplierName: bestSupplier.name,
+          unitPrice: bestSupplier.pricePerUnit || material.unitPrice || 0,
+          totalAmount: suggestedQty * (bestSupplier.pricePerUnit || material.unitPrice || 0),
+          currency: material.currency || 'USD',
+          deliveryDate: deliveryDate.toISOString().split('T')[0],
+          deliveryTime: deliveryDays,
+          supplierRating: bestSupplier.rating || 3,
+          fulfillmentRate: bestSupplier.fulfillmentRate || 95,
+          aiReasoning: supplierRecommendation.reasoning,
+          riskLevel: supplierRecommendation.riskLevel,
+          priority: this.calculatePriority(material, currentStock, reorderLevel, avgUsage),
+          urgency: currentStock <= (reorderLevel * 0.5) ? 'High' : currentStock <= reorderLevel ? 'Medium' : 'Low'
+        };
+
+        suggestions.push(suggestion);
+      }
+
+      // Sort by priority and urgency
+      suggestions.sort((a, b) => {
+        if (a.urgency !== b.urgency) {
+          const urgencyOrder = { 'High': 3, 'Medium': 2, 'Low': 1 };
+          return urgencyOrder[b.urgency] - urgencyOrder[a.urgency];
+        }
+        return b.priority - a.priority;
+      });
+
+      console.log(`✅ Generated ${suggestions.length} AI-powered PO suggestions`);
+      return suggestions;
+
+    } catch (error) {
+      console.error('❌ Error generating PO suggestions:', error);
+      return this.getFallbackPOSuggestions(lowStockMaterials, suppliers);
+    }
+  }
+
+  /**
+   * Recommend supplier using AI analysis
+   * @param {Object} material - Material data
+   * @param {Array} suppliers - Available suppliers
+   * @param {Array} usageLogs - Usage history
+   * @returns {Promise<Object>} - Supplier recommendation with reasoning
+   */
+  async recommendSupplierWithAI(material, suppliers, usageLogs) {
+    const prompt = `
+    As a procurement AI, recommend the best supplier for "${material.name}" (Category: ${material.category || 'N/A'}).
+
+    Available suppliers:
+    ${suppliers.map(s => `
+    - ${s.name}: Rating ${s.rating}/5, Delivery ${s.deliveryTime} days, Fulfillment ${s.fulfillmentRate}%, Price $${s.pricePerUnit || 'N/A'}
+    `).join('')}
+
+    Material details:
+    - Current stock: ${material.stockQty || 0}
+    - Reorder level: ${material.reorderLevel || 10}
+    - Average monthly usage: ${material.avgMonthlyUsage || 'N/A'}
+
+    Consider: delivery time, fulfillment rate, price, rating, and reliability.
+
+    Respond in JSON format:
+    {
+      "supplier": "supplier_name",
+      "reasoning": "detailed_explanation_under_100_words",
+      "riskLevel": "low|medium|high"
+    }
+    `;
+
+    const response = await this.generateContent(prompt);
+
+    try {
+      const jsonMatch = response.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        return JSON.parse(jsonMatch[0]);
+      }
+    } catch (e) {
+      console.log('Could not parse AI supplier recommendation, using fallback');
+    }
+
+    // Fallback logic
+    const bestSupplier = suppliers.reduce((best, current) => {
+      const bestScore = (best.rating || 0) * 0.3 + (best.fulfillmentRate || 0) * 0.4 + (10 - (best.deliveryTime || 10)) * 0.3;
+      const currentScore = (current.rating || 0) * 0.3 + (current.fulfillmentRate || 0) * 0.4 + (10 - (current.deliveryTime || 10)) * 0.3;
+      return currentScore > bestScore ? current : best;
+    });
+
+    return {
+      supplier: bestSupplier.name,
+      reasoning: `Selected based on optimal balance of rating (${bestSupplier.rating}/5), fulfillment rate (${bestSupplier.fulfillmentRate}%), and delivery time (${bestSupplier.deliveryTime} days).`,
+      riskLevel: bestSupplier.fulfillmentRate > 95 ? 'low' : bestSupplier.fulfillmentRate > 85 ? 'medium' : 'high'
+    };
+  }
+
+  /**
+   * Calculate priority score for material
+   * @param {Object} material - Material data
+   * @param {number} currentStock - Current stock level
+   * @param {number} reorderLevel - Reorder threshold
+   * @param {number} avgUsage - Average monthly usage
+   * @returns {number} - Priority score (higher = more urgent)
+   */
+  calculatePriority(material, currentStock, reorderLevel, avgUsage) {
+    let priority = 0;
+
+    // Stock level urgency (0-40 points)
+    const stockRatio = currentStock / (reorderLevel || 1);
+    if (stockRatio <= 0.5) priority += 40;
+    else if (stockRatio <= 0.8) priority += 30;
+    else if (stockRatio <= 1.0) priority += 20;
+    else priority += 10;
+
+    // Usage frequency (0-30 points)
+    if (avgUsage > 50) priority += 30;
+    else if (avgUsage > 20) priority += 20;
+    else if (avgUsage > 5) priority += 10;
+
+    // Category importance (0-20 points)
+    const criticalCategories = ['safety', 'electrical', 'raw materials'];
+    if (criticalCategories.some(cat =>
+      material.category?.toLowerCase().includes(cat) ||
+      material.name?.toLowerCase().includes(cat)
+    )) {
+      priority += 20;
+    }
+
+    // Time since last order (0-10 points)
+    if (material.lastUsed) {
+      const daysSinceLastUse = (new Date() - new Date(material.lastUsed)) / (1000 * 60 * 60 * 24);
+      if (daysSinceLastUse > 30) priority += 10;
+      else if (daysSinceLastUse > 14) priority += 5;
+    }
+
+    return Math.min(priority, 100);
+  }
+
+  /**
+   * Fallback PO suggestions when AI fails
+   * @param {Array} lowStockMaterials - Materials with low stock
+   * @param {Array} suppliers - Available suppliers
+   * @returns {Array} - Basic PO suggestions
+   */
+  getFallbackPOSuggestions(lowStockMaterials, suppliers) {
+    console.log('🔄 Using fallback PO suggestion logic');
+
+    return lowStockMaterials.slice(0, 5).map(material => {
+      const suitableSuppliers = suppliers.filter(s => s.isActive);
+      const bestSupplier = suitableSuppliers.reduce((best, current) => {
+        const bestScore = (best.rating || 0) + (best.fulfillmentRate || 0) / 10;
+        const currentScore = (current.rating || 0) + (current.fulfillmentRate || 0) / 10;
+        return currentScore > bestScore ? current : best;
+      }, suitableSuppliers[0] || {});
+
+      const suggestedQty = Math.max(
+        (material.maxStock || 100) - (material.stockQty || 0),
+        material.reorderLevel || 10
+      );
+
+      const deliveryDate = new Date();
+      deliveryDate.setDate(deliveryDate.getDate() + (bestSupplier.deliveryTime || 7));
+
+      return {
+        materialID: material.materialID,
+        materialName: material.name,
+        category: material.category,
+        currentStock: material.stockQty || 0,
+        reorderLevel: material.reorderLevel || 10,
+        suggestedQuantity: suggestedQty,
+        unit: material.unit || 'PC',
+        supplierID: bestSupplier.supplierID || 'SUP-0001',
+        supplierName: bestSupplier.name || 'Default Supplier',
+        unitPrice: bestSupplier.pricePerUnit || material.unitPrice || 10,
+        totalAmount: suggestedQty * (bestSupplier.pricePerUnit || material.unitPrice || 10),
+        currency: material.currency || 'USD',
+        deliveryDate: deliveryDate.toISOString().split('T')[0],
+        deliveryTime: bestSupplier.deliveryTime || 7,
+        supplierRating: bestSupplier.rating || 3,
+        fulfillmentRate: bestSupplier.fulfillmentRate || 95,
+        aiReasoning: 'Fallback recommendation based on supplier rating and fulfillment rate.',
+        riskLevel: 'medium',
+        priority: 50,
+        urgency: (material.stockQty || 0) <= (material.reorderLevel || 10) ? 'High' : 'Medium'
+      };
+    });
   }
 }
 

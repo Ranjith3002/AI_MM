@@ -48,6 +48,24 @@ sap.ui.define([
             oRouter.navTo("RouteUsageTrends");
         },
 
+        onNavigateToSuggestedPOs: function () {
+            console.log("Navigating to AI-Powered PO Suggestions");
+            MessageToast.show("Loading AI-Powered PO Suggestions...");
+
+            // Use direct hash navigation for reliability
+            window.location.hash = "#/suggested-pos";
+
+            // Also try router navigation as backup
+            try {
+                var oRouter = this.getOwnerComponent().getRouter();
+                if (oRouter) {
+                    oRouter.navTo("RouteSuggestedPOs");
+                }
+            } catch (error) {
+                console.log("Router navigation failed, using direct hash navigation");
+            }
+        },
+
         onNavigateToPOManagement: function () {
             // Stay on current page as this is the PO management view
             MessageToast.show("You are already on the PO Management view");

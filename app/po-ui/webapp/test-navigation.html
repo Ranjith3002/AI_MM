@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Test Navigation to Suggested POs</title>
+    <script>
+        // Simple test to check if navigation works
+        function testNavigation() {
+            console.log("Testing navigation...");
+            
+            // Check if we can access the route
+            var currentUrl = window.location.href;
+            console.log("Current URL:", currentUrl);
+            
+            // Try to navigate to the suggested POs route
+            var baseUrl = currentUrl.split('#')[0];
+            var testUrl = baseUrl + "#/suggested-pos";
+            
+            console.log("Attempting to navigate to:", testUrl);
+            window.location.href = testUrl;
+        }
+        
+        function testBackendEndpoint() {
+            console.log("Testing backend endpoint...");
+            
+            fetch("/odata/v4/material/getPOSuggestions()")
+                .then(response => {
+                    console.log("Response status:", response.status);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Response data:", data);
+                    document.getElementById("result").innerHTML = 
+                        "<pre>" + JSON.stringify(data, null, 2) + "</pre>";
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    document.getElementById("result").innerHTML = 
+                        "<p style='color: red;'>Error: " + error.message + "</p>";
+                });
+        }
+    </script>
+</head>
+<body>
+    <h1>Navigation Test</h1>
+    <p>Use this page to test the Suggested POs functionality</p>
+    
+    <button onclick="testNavigation()">Test Navigation to Suggested POs</button>
+    <button onclick="testBackendEndpoint()">Test Backend Endpoint</button>
+    
+    <h2>Backend Response:</h2>
+    <div id="result">Click "Test Backend Endpoint" to see the response</div>
+    
+    <h2>Instructions:</h2>
+    <ol>
+        <li>Make sure the CAP server is running (npm start)</li>
+        <li>Click "Test Backend Endpoint" to verify the API works</li>
+        <li>Click "Test Navigation" to check routing</li>
+        <li>Check browser console for any errors</li>
+    </ol>
+    
+    <h2>Manual Navigation:</h2>
+    <p>You can also manually navigate to: <a href="#/suggested-pos">#/suggested-pos</a></p>
+</body>
+</html>

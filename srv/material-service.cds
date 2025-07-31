@@ -39,6 +39,9 @@ service MaterialService @(path: '/odata/v4/material') {
   action analyzeUsageTrends(materialID: String) returns String;
   action generateAISuggestions(query: String) returns String;
 
+  // Smart PO Suggestions
+  function getPOSuggestions() returns String;
+
   // Export Actions
   action exportPOsPDF() returns String;
   action exportPOsExcel() returns String;

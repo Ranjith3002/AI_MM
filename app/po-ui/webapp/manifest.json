@@ -123,6 +123,13 @@
           "target": [
             "TargetUsageTrends"
           ]
+        },
+        {
+          "name": "RouteSuggestedPOs",
+          "pattern": "suggested-pos",
+          "target": [
+            "TargetSuggestedPOs"
+          ]
         }
       ],
       "targets": {
@@ -160,6 +167,13 @@
           "clearControlAggregation": false,
           "viewId": "UsageTrends",
           "viewName": "UsageTrends"
+        },
+        "TargetSuggestedPOs": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "SuggestedPOs",
+          "viewName": "SuggestedPOs"
         }
       }
     },

@@ -73,7 +73,21 @@ module.exports = cds.service.impl(async function() {
 
   // Action: Create Purchase Order
   this.on('createPurchaseOrder', async (req) => {
-    const { material, supplier, quantity, unitPrice, deliveryDate, notes } = req.data;
+    const {
+      material,
+      supplier,
+      quantity,
+      unitPrice,
+      deliveryDate,
+      notes,
+      materialID,
+      supplierID,
+      unit,
+      currency,
+      aiRecommendation,
+      isConfirmed,
+      confirmedBy
+    } = req.data;
 
     const count = await SELECT.one`count(*) as count`.from(PurchaseOrders);
     const poNumber = `PO-${new Date().getFullYear()}-${String(count.count + 1).padStart(3, '0')}`;
@@ -81,17 +95,24 @@ module.exports = cds.service.impl(async function() {
     const newPO = {
       poID: `PO-${String(count.count + 1).padStart(4, '0')}`,
       orderNumber: poNumber,
+      materialID: materialID || null,
       material,
+      supplierID: supplierID || null,
       supplier,
       quantity,
+      unit: unit || 'PC',
       unitPrice,
       totalAmount: quantity * unitPrice,
-      currency: 'USD',
+      currency: currency || 'USD',
       status: 'Draft',
       deliveryDate,
       notes,
       requestedBy: req.user.id || 'System',
-      generatedByAI: false
+      generatedByAI: Boolean(aiRecommendation),
+      aiRecommendation: aiRecommendation || null,
+      isConfirmed: Boolean(isConfirmed),
+      confirmedBy: isConfirmed ? (confirmedBy || req.user.id || 'System') : null,
+      confirmedAt: isConfirmed ? new Date() : null
     };
 
     const result = await INSERT.into(PurchaseOrders).entries(newPO);
@@ -343,6 +364,81 @@ module.exports = cds.service.impl(async function() {
     } catch (error) {
       console.error('Error in generateAISuggestions:', error);
       return 'Failed to generate AI suggestions. Please review your procurement data manually.';
+    }
+  });
+
+  // ===== SMART PO SUGGESTIONS =====
+
+  // Function: Get AI-powered PO suggestions
+  this.on('getPOSuggestions', async (req) => {
+    try {
+      console.log('🤖 Generating smart PO suggestions...');
+
+      // Get low stock materials
+      const lowStockMaterials = await SELECT.from(Materials)
+        .where`stockQty < reorderLevel OR stockQty <= ${10}`;
+
+      if (lowStockMaterials.length === 0) {
+        return JSON.stringify({
+          success: true,
+          message: 'No materials require restocking at this time.',
+          suggestions: []
+        });
+      }
+
+      // Get active suppliers
+      const suppliers = await SELECT.from(Suppliers).where({ isActive: true });
+
+      if (suppliers.length === 0) {
+        return JSON.stringify({
+          success: false,
+          message: 'No active suppliers found. Please activate suppliers before generating suggestions.',
+          suggestions: []
+        });
+      }
+
+      // Get usage logs for better recommendations
+      const usageLogs = await SELECT.from(MaterialUsageLogs)
+        .where`usedOn >= ${new Date(Date.now() - 90 * 24 * 60 * 60 * 1000)}`; // Last 90 days
+
+      // Generate AI-powered suggestions
+      const suggestions = await aiService.generatePOSuggestions(
+        lowStockMaterials,
+        suppliers,
+        usageLogs
+      );
+
+      // Log the AI insight
+      if (suggestions.length > 0) {
+        await INSERT.into(AIInsights).entries({
+          type: 'PO_SUGGESTIONS',
+          query: `Generated ${suggestions.length} smart PO suggestions for low stock materials`,
+          insight: `AI recommended purchase orders for ${suggestions.length} materials with total estimated value of $${suggestions.reduce((sum, s) => sum + (s.totalAmount || 0), 0).toFixed(2)}`,
+          confidence: 85.0,
+          validUntil: new Date(Date.now() + 24 * 60 * 60 * 1000) // 24 hours
+        });
+      }
+
+      return JSON.stringify({
+        success: true,
+        message: `Generated ${suggestions.length} smart PO suggestions`,
+        suggestions: suggestions,
+        metadata: {
+          lowStockCount: lowStockMaterials.length,
+          activeSuppliers: suppliers.length,
+          generatedAt: new Date().toISOString(),
+          validUntil: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString()
+        }
+      });
+
+    } catch (error) {
+      console.error('❌ Error generating PO suggestions:', error);
+      return JSON.stringify({
+        success: false,
+        message: 'Failed to generate PO suggestions. Please try again later.',
+        suggestions: [],
+        error: error.message
+      });
     }
   });
 

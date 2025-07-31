@@ -1,9 +1,6 @@
 ID;materialID;material;movementType;quantity;unit;reference;location;notes;createdAt;modifiedAt
-1;MAT-0001;Steel Rods 10mm;OUT;50;PC;WO-2024-001;Warehouse A;Used for construction project;2024-07-01T08:00:00Z;2024-07-01T08:00:00Z
+1;MAT-0001;Steel Rods 10mm;OUT;50;PC;WO-2024-001;Warehouse A;Used for construction project Phase 1;2024-07-01T08:00:00Z;2024-07-01T08:00:00Z
 2;MAT-0001;Steel Rods 10mm;IN;500;PC;PO-2024-001;Warehouse A;Received from MetalCorp Industries;2024-07-15T14:30:00Z;2024-07-15T14:30:00Z
-3;MAT-0002;Aluminum Sheets 2mm;OUT;25;M;WO-2024-002;Warehouse B;Manufacturing usage;2024-07-05T14:20:00Z;2024-07-05T14:20:00Z
-4;MAT-0003;Copper Wire 2.5mm;OUT;200;M;WO-2024-003;Warehouse A;Electrical installation;2024-07-10T11:15:00Z;2024-07-10T11:15:00Z
-5;MAT-0004;Concrete Mix;IN;50;KG;PO-2024-004;Warehouse C;Received from BuildMaster;2024-07-18T16:00:00Z;2024-07-18T16:00:00Z
-6;MAT-0004;Concrete Mix;OUT;15;KG;WO-2024-004;Warehouse C;Parking lot repair;2024-07-20T09:30:00Z;2024-07-20T09:30:00Z
-7;MAT-0005;Safety Helmets;OUT;5;PC;WO-2024-005;Safety Storage;New employee equipment;2024-07-12T10:30:00Z;2024-07-12T10:30:00Z
-8;MAT-0006;Industrial Lubricant;OUT;8;L;WO-2024-006;Maintenance Shop;Equipment maintenance;2024-07-25T13:45:00Z;2024-07-25T13:45:00Z
+3;MAT-0002;Aluminum Sheets 2mm;OUT;25;M2;WO-2024-002;Warehouse B;Manufacturing usage for roofing;2024-07-05T14:20:00Z;2024-07-05T14:20:00Z
+4;MAT-0003;Copper Wire 2.5mm;OUT;200;M;WO-2024-003;Warehouse A;Electrical installation Building A;2024-07-10T11:15:00Z;2024-07-10T11:15:00Z
+5;MAT-0004;Concrete Mix;IN;50;KG;PO-2024-004;Warehouse C;Delivered for foundation work;2024-07-18T09:45:00Z;2024-07-18T09:45:00Z

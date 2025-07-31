@@ -1,0 +1,90 @@
+<mvc:View
+    controllerName="po.ui.controller.SuggestedPOs"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    
+    <Page
+        id="suggestedPOsPage"
+        title="AI-Powered PO Suggestions - Simple Test"
+        showNavButton="true"
+        navButtonPress="onNavBack">
+        
+        <content>
+            <VBox class="sapUiMediumMargin">
+                
+                <MessageStrip
+                    text="🎉 SUCCESS! The navigation is working! This is the AI-Powered PO Suggestions page."
+                    type="Success"
+                    showIcon="true"
+                    class="sapUiMediumMarginBottom"/>
+                
+                <Panel headerText="Test Information" class="sapUiMediumMarginBottom">
+                    <content>
+                        <VBox class="sapUiSmallMargin">
+                            <Text text="✅ Route: RouteSuggestedPOs" class="sapUiTinyMarginBottom"/>
+                            <Text text="✅ Pattern: suggested-pos" class="sapUiTinyMarginBottom"/>
+                            <Text text="✅ Controller: po.ui.controller.SuggestedPOs" class="sapUiTinyMarginBottom"/>
+                            <Text text="✅ View: SuggestedPOs" class="sapUiTinyMarginBottom"/>
+                        </VBox>
+                    </content>
+                </Panel>
+                
+                <Panel headerText="Backend Test" class="sapUiMediumMarginBottom">
+                    <content>
+                        <VBox class="sapUiSmallMargin">
+                            <Text text="Loading Status: {suggestions>/loading}" class="sapUiTinyMarginBottom"/>
+                            <Text text="Total Suggestions: {suggestions>/summary/totalSuggestions}" class="sapUiTinyMarginBottom"/>
+                            <Text text="Last Updated: {suggestions>/lastUpdated}" class="sapUiTinyMarginBottom"/>
+                            <Button 
+                                text="Test Backend API" 
+                                type="Emphasized" 
+                                press="onRefreshSuggestions"
+                                class="sapUiTinyMarginTop"/>
+                        </VBox>
+                    </content>
+                </Panel>
+                
+                <Panel headerText="Sample Suggestions" class="sapUiMediumMarginBottom">
+                    <content>
+                        <Table items="{suggestions>/suggestions}" class="sapUiSmallMargin">
+                            <columns>
+                                <Column><Text text="Material"/></Column>
+                                <Column><Text text="Supplier"/></Column>
+                                <Column><Text text="Quantity"/></Column>
+                                <Column><Text text="Amount"/></Column>
+                                <Column><Text text="Actions"/></Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{suggestions>materialName}"/>
+                                        <Text text="{suggestions>supplierName}"/>
+                                        <Text text="{suggestions>suggestedQuantity} {suggestions>unit}"/>
+                                        <Text text="{suggestions>currency} {suggestions>totalAmount}"/>
+                                        <Button 
+                                            text="Generate PO" 
+                                            type="Accept" 
+                                            press="onConfirmAndGeneratePO"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </content>
+                </Panel>
+                
+                <Panel headerText="Navigation Test">
+                    <content>
+                        <VBox class="sapUiSmallMargin">
+                            <Text text="If you can see this page, the navigation is working correctly!" class="sapUiTinyMarginBottom"/>
+                            <HBox class="sapUiTinyMarginTop">
+                                <Button text="Back to Main" press="onNavBack" type="Emphasized" class="sapUiTinyMarginEnd"/>
+                                <Button text="Refresh Data" press="onRefreshSuggestions" type="Default"/>
+                            </HBox>
+                        </VBox>
+                    </content>
+                </Panel>
+                
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

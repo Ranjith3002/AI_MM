@@ -1,0 +1,236 @@
+<mvc:View
+    controllerName="po.ui.controller.SuggestedPOs"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    
+    <Page
+        id="suggestedPOsPage"
+        title="AI-Powered PO Suggestions"
+        showNavButton="true"
+        navButtonPress="onNavBack">
+        
+        <content>
+            <VBox class="sapUiMediumMargin">
+                
+                <!-- Header Information -->
+                <MessageStrip
+                    text="AI analyzes low stock materials, supplier ratings, delivery times, and fulfillment history to generate smart purchase order suggestions."
+                    type="Information"
+                    showIcon="true"
+                    class="sapUiMediumMarginBottom"/>
+                
+                <!-- Summary Cards -->
+                <HBox class="sapUiMediumMarginBottom">
+                    <Panel class="sapUiTinyMarginEnd" width="200px">
+                        <content>
+                            <VBox alignItems="Center" class="sapUiSmallMargin">
+                                <ObjectNumber
+                                    number="{suggestions>/summary/totalSuggestions}"
+                                    emphasized="true"
+                                    state="Success"/>
+                                <Text text="Total Suggestions" class="sapUiSmallText"/>
+                                <Text text="AI Generated" class="sapUiSmallText sapUiTextMuted"/>
+                            </VBox>
+                        </content>
+                    </Panel>
+                    <Panel class="sapUiTinyMarginEnd" width="200px">
+                        <content>
+                            <VBox alignItems="Center" class="sapUiSmallMargin">
+                                <ObjectNumber
+                                    number="{suggestions>/summary/totalValue}"
+                                    numberUnit="USD"
+                                    emphasized="true"
+                                    state="Error"/>
+                                <Text text="Total Value" class="sapUiSmallText"/>
+                                <Text text="Estimated Cost" class="sapUiSmallText sapUiTextMuted"/>
+                            </VBox>
+                        </content>
+                    </Panel>
+                    <Panel class="sapUiTinyMarginEnd" width="200px">
+                        <content>
+                            <VBox alignItems="Center" class="sapUiSmallMargin">
+                                <ObjectNumber
+                                    number="{suggestions>/summary/highPriority}"
+                                    emphasized="true"
+                                    state="Error"/>
+                                <Text text="High Priority" class="sapUiSmallText"/>
+                                <Text text="Urgent Items" class="sapUiSmallText sapUiTextMuted"/>
+                            </VBox>
+                        </content>
+                    </Panel>
+                    <Panel width="200px">
+                        <content>
+                            <VBox alignItems="Center" class="sapUiSmallMargin">
+                                <ObjectNumber
+                                    number="{suggestions>/summary/mediumPriority}"
+                                    emphasized="true"
+                                    state="Warning"/>
+                                <Text text="Medium Priority" class="sapUiSmallText"/>
+                                <Text text="Standard Items" class="sapUiSmallText sapUiTextMuted"/>
+                            </VBox>
+                        </content>
+                    </Panel>
+                </HBox>
+                
+                <!-- Action Bar -->
+                <Toolbar class="sapUiMediumMarginBottom">
+                    <Title text="Smart Purchase Order Suggestions" level="H2"/>
+                    <ToolbarSpacer/>
+                    <Button
+                        text="🔄 Refresh Suggestions"
+                        type="Emphasized"
+                        press="onRefreshSuggestions"
+                        enabled="{= !${suggestions>/loading}}"/>
+                </Toolbar>
+                
+                <!-- Loading Indicator -->
+                <BusyIndicator visible="{suggestions>/loading}" class="sapUiMediumMarginBottom"/>
+                
+                <!-- Suggestions Table -->
+                <Table
+                    id="suggestionsTable"
+                    items="{suggestions>/suggestions}"
+                    growing="true"
+                    growingThreshold="20"
+                    mode="None"
+                    class="sapUiResponsiveMargin">
+                    
+                    <headerToolbar>
+                        <Toolbar>
+                            <Title text="AI Suggestions ({suggestions>/summary/totalSuggestions})" level="H3"/>
+                            <ToolbarSpacer/>
+                            <Text text="Last Updated: {suggestions>/lastUpdated}" class="sapUiTinyMarginEnd"/>
+                        </Toolbar>
+                    </headerToolbar>
+                    
+                    <columns>
+                        <Column width="3rem">
+                            <Text text="Priority"/>
+                        </Column>
+                        <Column width="12rem">
+                            <Text text="Material"/>
+                        </Column>
+                        <Column width="8rem">
+                            <Text text="Stock Status"/>
+                        </Column>
+                        <Column width="6rem">
+                            <Text text="Quantity"/>
+                        </Column>
+                        <Column width="10rem">
+                            <Text text="Supplier"/>
+                        </Column>
+                        <Column width="8rem">
+                            <Text text="Total Amount"/>
+                        </Column>
+                        <Column width="6rem">
+                            <Text text="Delivery"/>
+                        </Column>
+                        <Column width="15rem">
+                            <Text text="AI Reasoning"/>
+                        </Column>
+                        <Column width="8rem">
+                            <Text text="Actions"/>
+                        </Column>
+                    </columns>
+                    
+                    <items>
+                        <ColumnListItem press="onItemPress">
+                            <cells>
+                                <!-- Priority -->
+                                <ObjectStatus
+                                    text="{suggestions>urgency}"
+                                    state="{path: 'suggestions>urgency', formatter: '.formatUrgencyState'}"/>
+                                
+                                <!-- Material -->
+                                <VBox>
+                                    <Text text="{suggestions>materialName}" class="sapUiTinyMarginBottom"/>
+                                    <Text text="{suggestions>materialID}" class="sapUiSmallText"/>
+                                    <Text text="{suggestions>category}" class="sapUiSmallText sapUiTextMuted"/>
+                                </VBox>
+                                
+                                <!-- Stock Status -->
+                                <VBox>
+                                    <Text text="Current: {suggestions>currentStock}"/>
+                                    <Text text="Reorder: {suggestions>reorderLevel}" class="sapUiSmallText"/>
+                                    <ObjectStatus
+                                        text="{= ${suggestions>currentStock} &lt;= ${suggestions>reorderLevel} ? 'Low Stock' : 'OK'}"
+                                        state="{= ${suggestions>currentStock} &lt;= ${suggestions>reorderLevel} ? 'Error' : 'Success'}"/>
+                                </VBox>
+                                
+                                <!-- Quantity -->
+                                <VBox>
+                                    <Text text="{suggestions>suggestedQuantity}"/>
+                                    <Text text="{suggestions>unit}" class="sapUiSmallText sapUiTextMuted"/>
+                                </VBox>
+                                
+                                <!-- Supplier -->
+                                <VBox>
+                                    <Text text="{suggestions>supplierName}" class="sapUiTinyMarginBottom"/>
+                                    <HBox>
+                                        <RatingIndicator
+                                            value="{suggestions>supplierRating}"
+                                            maxValue="5"
+                                            displayOnly="true"
+                                            class="sapUiTinyMarginEnd"/>
+                                        <Text text="{suggestions>fulfillmentRate}%" class="sapUiSmallText"/>
+                                    </HBox>
+                                    <ObjectStatus
+                                        text="{suggestions>riskLevel} risk"
+                                        state="{path: 'suggestions>riskLevel', formatter: '.formatRiskState'}"/>
+                                </VBox>
+                                
+                                <!-- Total Amount -->
+                                <VBox>
+                                    <ObjectNumber
+                                        number="{suggestions>totalAmount}"
+                                        numberUnit="{suggestions>currency}"
+                                        emphasized="true"/>
+                                    <Text text="@ {suggestions>unitPrice}/{suggestions>unit}" class="sapUiSmallText sapUiTextMuted"/>
+                                </VBox>
+                                
+                                <!-- Delivery -->
+                                <VBox>
+                                    <Text text="{suggestions>deliveryDate}"/>
+                                    <Text text="{suggestions>deliveryTime} days" class="sapUiSmallText sapUiTextMuted"/>
+                                </VBox>
+                                
+                                <!-- AI Reasoning -->
+                                <Text
+                                    text="{suggestions>aiReasoning}"
+                                    maxLines="3"
+                                    class="sapUiSmallText"/>
+                                
+                                <!-- Actions -->
+                                <VBox>
+                                    <Button
+                                        text="✅ Confirm and Generate PO"
+                                        type="Emphasized"
+                                        press="onConfirmAndGeneratePO"
+                                        class="sapUiTinyMarginBottom"/>
+                                    <Button
+                                        text="📋 View Details"
+                                        type="Transparent"
+                                        press="onViewDetails"/>
+                                </VBox>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+                
+                <!-- Empty State -->
+                <Panel visible="{= ${suggestions>/summary/totalSuggestions} === 0}" class="sapUiMediumMarginTop">
+                    <content>
+                        <VBox alignItems="Center" class="sapUiLargeMargin">
+                            <Text text="💡" style="font-size: 4rem;" class="sapUiMediumMarginBottom"/>
+                            <Title text="No PO Suggestions Available" level="H3" class="sapUiMediumMarginBottom"/>
+                            <Text text="All materials are adequately stocked or no active suppliers are available." class="sapUiMediumMarginBottom"/>
+                            <Button text="🔄 Refresh Suggestions" type="Emphasized" press="onRefreshSuggestions"/>
+                        </VBox>
+                    </content>
+                </Panel>
+                
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

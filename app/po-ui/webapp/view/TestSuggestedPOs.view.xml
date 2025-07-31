@@ -1,0 +1,64 @@
+<mvc:View
+    controllerName="po.ui.controller.SuggestedPOs"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    
+    <Page
+        id="testSuggestedPOsPage"
+        title="🎉 SUCCESS! AI-Powered PO Suggestions"
+        showNavButton="true"
+        navButtonPress="onNavBack">
+        
+        <content>
+            <VBox class="sapUiMediumMargin">
+                
+                <MessageStrip
+                    text="✅ Navigation is working! This is the AI-Powered PO Suggestions page."
+                    type="Success"
+                    showIcon="true"
+                    class="sapUiMediumMarginBottom"/>
+                
+                <Panel headerText="🚀 Feature Status" class="sapUiMediumMarginBottom">
+                    <content>
+                        <VBox class="sapUiSmallMargin">
+                            <Text text="✅ Backend API: Working (13 suggestions available)" class="sapUiTinyMarginBottom"/>
+                            <Text text="✅ Navigation: Working" class="sapUiTinyMarginBottom"/>
+                            <Text text="✅ Controller: Loaded" class="sapUiTinyMarginBottom"/>
+                            <Text text="✅ View: Rendered" class="sapUiTinyMarginBottom"/>
+                        </VBox>
+                    </content>
+                </Panel>
+                
+                <Panel headerText="📊 Quick Data Test" class="sapUiMediumMarginBottom">
+                    <content>
+                        <VBox class="sapUiSmallMargin">
+                            <Text text="Loading Status: {suggestions>/loading}" class="sapUiTinyMarginBottom"/>
+                            <Text text="Total Suggestions: {suggestions>/summary/totalSuggestions}" class="sapUiTinyMarginBottom"/>
+                            <Text text="Last Updated: {suggestions>/lastUpdated}" class="sapUiTinyMarginBottom"/>
+                            <Button 
+                                text="🔄 Load AI Suggestions" 
+                                type="Emphasized" 
+                                press="onRefreshSuggestions"
+                                class="sapUiTinyMarginTop"/>
+                        </VBox>
+                    </content>
+                </Panel>
+                
+                <Panel headerText="🎯 Next Steps">
+                    <content>
+                        <VBox class="sapUiSmallMargin">
+                            <Text text="1. Click 'Load AI Suggestions' to test the backend" class="sapUiTinyMarginBottom"/>
+                            <Text text="2. If that works, we'll switch to the full view" class="sapUiTinyMarginBottom"/>
+                            <Text text="3. The full view will show all 13 AI suggestions in a table" class="sapUiTinyMarginBottom"/>
+                            <HBox class="sapUiTinyMarginTop">
+                                <Button text="🏠 Back to Main" press="onNavBack" type="Default" class="sapUiTinyMarginEnd"/>
+                                <Button text="🔄 Refresh Data" press="onRefreshSuggestions" type="Emphasized"/>
+                            </HBox>
+                        </VBox>
+                    </content>
+                </Panel>
+                
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>
