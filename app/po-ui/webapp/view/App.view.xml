@@ -3,8 +3,8 @@
     xmlns:mvc="sap.ui.core.mvc"
     displayBlock="true"
     xmlns="sap.m">
-    <Shell id="shell">
-        <App id="app" class="myAppDemoWT">
+    <Shell id="shell" showLogout="false">
+        <App id="app" class="myAppDemoWT" >
             <!-- Content will be loaded by router -->
         </App>
     </Shell>

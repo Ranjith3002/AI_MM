@@ -1,17 +1,18 @@
+
 <mvc:View
     controllerName="po.ui.controller.Main"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:core="sap.ui.core"
     xmlns="sap.m">
 
-    <Page id="page" title="AI-Powered Procurement System" showNavButton="false">
+    <Page id="page" title="AI-Powered Procurement System" showNavButton="false"  >
         <content>
-            <VBox class="sapUiMediumMargin">
-                
+            <VBox class="sapUiMediumMargin" >
+
                 <!-- Simple Navigation -->
                 <Panel headerText="Smart Procurement Dashboard" class="sapUiResponsiveMargin">
                     <content>
-                        <VBox class="sapUiMediumMargin">
+                        <VBox class="sapUiMediumMargin"  width="100%">
                             <Text text="Welcome to the AI-Powered Procurement System" class="sapUiMediumMarginBottom"/>
                             <HBox class="sapUiSmallMarginBottom">
                                 <Button
@@ -33,7 +34,7 @@
                                     press="onNavigateToUsageTrends"
                                     class="sapUiTinyMarginEnd"/>
                                 <Button
-                                    text="Suggested POs"
+                                    text="AI Generated (PO)"
                                     icon="sap-icon://lightbulb"
                                     type="Emphasized"
                                     press="onNavigateToSuggestedPOs"/>
@@ -41,7 +42,7 @@
                         </VBox>
                     </content>
                 </Panel>
-                
+
                 <!-- Purchase Orders Table -->
                 <Panel headerText="Purchase Orders" class="sapUiResponsiveMargin">
                     <headerToolbar>
@@ -53,13 +54,18 @@
                                 type="Emphasized"
                                 icon="sap-icon://add"
                                 press="onCreatePO"/>
+                            <Button
+                                text="Delete Selected"
+                                type="Reject"
+                                icon="sap-icon://delete"
+                                press="onDeleteSelectedPOs"/>
                         </Toolbar>
                     </headerToolbar>
 
                     <content>
                         <Table
                             id="table"
-                            mode="SingleSelect"
+                            mode="MultiSelect"
                             items="{/PurchaseOrders}"
                             growing="true"
                             growingThreshold="20"
@@ -91,53 +97,24 @@
                                         <menu>
                                             <Menu>
                                                 <items>
-                                                    <MenuItem
-                                                        text="Materials"
-                                                        icon="sap-icon://product"
-                                                        press="onViewEntity">
-                                                        <customData>
-                                                            <core:CustomData key="entity" value="Materials"/>
-                                                        </customData>
+                                                    <!-- Your entity MenuItems remain unchanged -->
+                                                    <MenuItem text="Materials" icon="sap-icon://product" press="onViewEntity">
+                                                        <customData><core:CustomData key="entity" value="Materials"/></customData>
                                                     </MenuItem>
-                                                    <MenuItem
-                                                        text="Suppliers"
-                                                        icon="sap-icon://supplier"
-                                                        press="onViewEntity">
-                                                        <customData>
-                                                            <core:CustomData key="entity" value="Suppliers"/>
-                                                        </customData>
+                                                    <MenuItem text="Suppliers" icon="sap-icon://supplier" press="onViewEntity">
+                                                        <customData><core:CustomData key="entity" value="Suppliers"/></customData>
                                                     </MenuItem>
-                                                    <MenuItem
-                                                        text="Purchase Orders"
-                                                        icon="sap-icon://document"
-                                                        press="onViewEntity">
-                                                        <customData>
-                                                            <core:CustomData key="entity" value="PurchaseOrders"/>
-                                                        </customData>
+                                                    <MenuItem text="Purchase Orders" icon="sap-icon://document" press="onViewEntity">
+                                                        <customData><core:CustomData key="entity" value="PurchaseOrders"/></customData>
                                                     </MenuItem>
-                                                    <MenuItem
-                                                        text="Stock Movements"
-                                                        icon="sap-icon://inventory"
-                                                        press="onViewEntity">
-                                                        <customData>
-                                                            <core:CustomData key="entity" value="StockMovements"/>
-                                                        </customData>
+                                                    <MenuItem text="Stock Movements" icon="sap-icon://inventory" press="onViewEntity">
+                                                        <customData><core:CustomData key="entity" value="StockMovements"/></customData>
                                                     </MenuItem>
-                                                    <MenuItem
-                                                        text="Material Usage Logs"
-                                                        icon="sap-icon://bar-chart"
-                                                        press="onViewEntity">
-                                                        <customData>
-                                                            <core:CustomData key="entity" value="MaterialUsageLogs"/>
-                                                        </customData>
+                                                    <MenuItem text="Material Usage Logs" icon="sap-icon://bar-chart" press="onViewEntity">
+                                                        <customData><core:CustomData key="entity" value="MaterialUsageLogs"/></customData>
                                                     </MenuItem>
-                                                    <MenuItem
-                                                        text="AI Insights"
-                                                        icon="sap-icon://lightbulb"
-                                                        press="onViewEntity">
-                                                        <customData>
-                                                            <core:CustomData key="entity" value="AIInsights"/>
-                                                        </customData>
+                                                    <MenuItem text="AI Insights" icon="sap-icon://lightbulb" press="onViewEntity">
+                                                        <customData><core:CustomData key="entity" value="AIInsights"/></customData>
                                                     </MenuItem>
                                                 </items>
                                             </Menu>
@@ -165,7 +142,7 @@
                             </columns>
 
                             <items>
-                                <ColumnListItem press="onItemPress">
+                                <ColumnListItem>
                                     <cells>
                                         <Text text="{orderNumber}"/>
                                         <Text text="{material}"/>
@@ -181,8 +158,9 @@
                         </Table>
                     </content>
                 </Panel>
-                
+
             </VBox>
         </content>
     </Page>
 </mvc:View>
+

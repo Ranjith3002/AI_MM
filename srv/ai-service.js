@@ -3,9 +3,10 @@ require('dotenv').config();
 
 class AIService {
   constructor() {
-    this.apiKey = process.env.GEMINI_API_KEY || 'AIzaSyAwIPGaUbMhqmTTNTKQEeI_buF2ehmXQ6k';
-    this.apiUrl = process.env.GEMINI_API_URL || 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
-    this.timeout = 10000; // 10 seconds timeout
+    this.apiKey = process.env.GEMINI_API_KEY || 'AIzaSyC8yBMwSj3ipoM03yWPNyLYDUMcsbLKN4k';
+    this.apiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent';
+    this.timeout = 15000; // 15 seconds timeout
+    this.maxRetries = 2;
   }
 
   /**
@@ -13,10 +14,15 @@ class AIService {
    * @param {string} prompt - The prompt to send to Gemini
    * @returns {Promise<string>} - AI generated response
    */
-  async generateContent(prompt) {
+  async generateContent(prompt, retryCount = 0) {
     try {
       console.log('🤖 Calling Gemini AI with prompt:', prompt.substring(0, 100) + '...');
-      
+
+      // Validate API key
+      if (!this.apiKey || this.apiKey === 'your-api-key-here') {
+        throw new Error('Invalid or missing Gemini API key');
+      }
+
       const response = await axios.post(
         `${this.apiUrl}?key=${this.apiKey}`,
         {
@@ -28,7 +34,13 @@ class AIService {
                 }
               ]
             }
-          ]
+          ],
+          generationConfig: {
+            temperature: 0.7,
+            topK: 40,
+            topP: 0.95,
+            maxOutputTokens: 1024,
+          }
         },
         {
           headers: {
@@ -47,6 +59,21 @@ class AIService {
       }
     } catch (error) {
       console.error('❌ Gemini AI Error:', error.message);
+
+      // Log detailed error information
+      if (error.response) {
+        console.error('Response status:', error.response.status);
+        console.error('Response data:', JSON.stringify(error.response.data, null, 2));
+      }
+
+      // Retry logic
+      if (retryCount < this.maxRetries && error.response?.status !== 403) {
+        console.log(`🔄 Retrying... (${retryCount + 1}/${this.maxRetries})`);
+        await new Promise(resolve => setTimeout(resolve, 1000 * (retryCount + 1)));
+        return this.generateContent(prompt, retryCount + 1);
+      }
+
+      console.log('🔄 Using fallback response for prompt type');
       return this.getFallbackResponse(prompt);
     }
   }
